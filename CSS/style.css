@@ -324,3 +324,6 @@ button,.button,.back-link,.category-filter,.add-button,.favorite,.nav-item,.quan
 
 /* Mobile: enforce pill-shaped controls, including iOS/PWA buttons */
 html body button,html body .button,html body .back-link,html body .category-filter,html body .add-button,html body .favorite,html body .nav-item,html body .quantity button,html body .remove-button,html body .empty-cart button,html body [role="button"]{border-radius:35px!important;-webkit-appearance:none;appearance:none}
+
+/* Remove the gold divider beneath the cart heading */
+.cart-items{border-top:0!important}
