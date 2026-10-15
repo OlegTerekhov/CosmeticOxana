@@ -20,13 +20,6 @@
 <body>
   <header class="topbar">
     <a class="wordmark" href="#home" aria-label="Берег — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА ЧЁРНОГО МОРЯ</small></span></a>
-    <nav class="desktop-nav" aria-label="Основная навигация">
-      <a href="#home" class="active" data-go="home">Главная</a>
-      <a href="#anapa" data-go="anapa">Анапская косметика</a>
-      <a href="#blacksea" data-go="blacksea">Чёрное море</a>
-      <a href="#cart" data-go="cart">Корзина <span id="desktopCartCount">0</span></a>
-      <a href="#contacts" data-go="contacts">Контакты</a>
-    </nav>
     <div class="top-actions">
       <span class="top-note">С любовью с юга России</span>
       <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Переключить тему"><span id="themeIcon">☾</span></button>
@@ -73,28 +66,30 @@
       <div class="manifesto-image"></div><div class="manifesto-copy"><span class="overline">НАСТРОЕНИЕ ПОБЕРЕЖЬЯ</span><h2>Соль на коже.<br>Солнце в волосах.<br><em>Море внутри.</em></h2><p>Маленький ежедневный ритуал, который возвращает к самому важному — к себе.</p><span class="manifesto-sign">С юга — с любовью&nbsp; ↗</span></div>
     </section>
 
-    <section class="catalog section-wrap page-section" id="anapa">
+      </div>
+
+  <section class="catalog section-wrap page-section screen" id="anapa">
       <div class="catalog-top"><button class="back-link" data-go="home">← На главную</button><span class="overline">КОЛЛЕКЦИЯ 01</span></div>
       <div class="catalog-heading"><p class="overline">Тепло южного солнца</p><h1>Анапская <em>косметика</em></h1><p>Знакомые ритуалы ухода с характером южного побережья.</p></div>
       <div class="filter-row"><span class="catalog-count" id="anapaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="anapa"><option value="featured">Сначала избранное</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
       <div class="product-grid" id="anapaProducts"></div>
     </section>
 
-    <section class="catalog section-wrap page-section" id="blacksea">
+    <section class="catalog section-wrap page-section screen" id="blacksea">
       <div class="catalog-top"><button class="back-link" data-go="home">← На главную</button><span class="overline">КОЛЛЕКЦИЯ 02</span></div>
       <div class="catalog-heading"><p class="overline">Свежесть морской глубины</p><h1>Чёрное <em>море</em></h1><p>Уход, вдохновлённый природой и свободой побережья.</p></div>
       <div class="filter-row"><span class="catalog-count" id="blackseaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="blacksea"><option value="featured">Сначала избранное</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
       <div class="product-grid" id="blackseaProducts"></div>
     </section>
 
-    <section class="cart-page section-wrap page-section" id="cart">
+    <section class="cart-page section-wrap page-section screen" id="cart">
       <div class="catalog-top"><span class="overline">ВАШ ВЫБОР</span><span class="cart-number" id="cartCountLabel">0 товаров</span></div>
       <div class="cart-heading"><p class="overline">Маленькая часть юга — у вас дома</p><h1>Ваша <em>корзина.</em></h1></div>
       <div id="cartItems" class="cart-items"></div>
       <div class="cart-summary" id="cartSummary"><div><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark" id="checkoutButton">Перейти к оформлению <span>↗</span></button><p>Демонстрационный магазин: оформление заказа пока не подключено.</p></div>
     </section>
 
-    <section class="contacts-page section-wrap page-section" id="contacts">
+    <section class="contacts-page section-wrap page-section screen" id="contacts">
       <div class="catalog-top"><span class="overline">МЫ НА СВЯЗИ</span><span>АНАПА · РОССИЯ</span></div>
       <div class="contacts-layout"><div><p class="overline">Есть вопрос?</p><h1>Давайте<br><em>поговорим.</em></h1><p class="contacts-lead">Поможем с выбором ухода, расскажем о брендах и подскажем по заказу.</p></div><div class="contact-card"><span class="contact-symbol">≈</span><p class="overline">СВЯЗЬ С МАГАЗИНОМ</p><h3>Будем на связи</h3><p>Добавьте сюда рабочий телефон, почту и ссылки на социальные сети магазина.</p><a href="mailto:hello@bereg.example" class="contact-link">Написать нам <span>↗</span></a><small>Контакты пока демонстрационные</small></div></div>
       <div class="coast-note"><span>44°53′ С. Ш. · 37°19′ В. Д.</span><span>С ЮГА РОССИИ — С ЛЮБОВЬЮ</span></div>
