@@ -23,12 +23,10 @@ function go(page){if(!["home","anapa","blacksea","cart","contacts"].includes(pag
 function addToCart(id){const existing=state.cart.find(i=>i.id===id);if(existing)existing.qty++;else state.cart.push({id,qty:1});save("bereg-cart",state.cart);renderCart();const p=products.find(p=>p.id===id);toast((p?.name||"Товар")+" добавлен в корзину")}
 function changeQty(id,delta){const item=state.cart.find(i=>i.id===id);if(!item)return;item.qty+=delta;if(item.qty<1)state.cart=state.cart.filter(i=>i.id!==id);save("bereg-cart",state.cart);renderCart()}
 function toggleFavorite(id){if(state.favorites.includes(id))state.favorites=state.favorites.filter(x=>x!==id);else state.favorites.push(id);save("bereg-favorites",state.favorites);renderCatalog("anapa");renderCatalog("blacksea");toast(state.favorites.includes(id)?"Добавлено в избранное":"Удалено из избранного")}
-function setTheme(dark){document.body.classList.toggle("dark",dark);$("#themeIcon").textContent=dark?"☀":"☾";$("#themeToggle").setAttribute("aria-label",dark?"Включить дневную тему":"Включить ночную тему");try{localStorage.setItem("bereg-theme",dark?"dark":"light")}catch{}const meta=$('meta[name="theme-color"]');if(meta)meta.content=dark?"#102928":"#f4f1e8"}
-$("#themeToggle").addEventListener("click",()=>setTheme(!document.body.classList.contains("dark")));
+
 $$("[data-sort]").forEach(el=>el.addEventListener("change",()=>renderCatalog(el.dataset.sort)));
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-go]");if(nav){e.preventDefault();go(nav.dataset.go);return}const add=e.target.closest("[data-add]");if(add){addToCart(add.dataset.add);return}const fav=e.target.closest("[data-favorite]");if(fav){toggleFavorite(fav.dataset.favorite);return}const qty=e.target.closest("[data-qty]");if(qty){changeQty(qty.dataset.qty,Number(qty.dataset.delta));return}const remove=e.target.closest("[data-remove]");if(remove){state.cart=state.cart.filter(i=>i.id!==remove.dataset.remove);save("bereg-cart",state.cart);renderCart();toast("Товар удалён");return}});
 $("#checkoutButton").addEventListener("click",()=>toast("Оформление заказа пока не подключено"));
 $$(".catalog").forEach(section=>section.addEventListener("click",e=>{if(e.target.closest("[data-favorite]"))return}));
-setTheme(load("bereg-theme","light")==="dark");
 renderCatalog("anapa");renderCatalog("blacksea");renderCart();
 const initial=location.hash.replace("#","");if(["anapa","blacksea","cart","contacts"].includes(initial))go(initial);else go("home");
