@@ -84,7 +84,7 @@ document.addEventListener("submit",async e=>{
     const form=e.target;const data=new FormData(form);const email=String(data.get("email")||"").trim();const password=String(data.get("password")||"");const name=String(data.get("display_name")||"").trim();accountBusy=true;renderAccount();
     try{
       if(accountMode==="signup"){
-        const {data:result,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name}}});
+        const {data:result,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name},emailRedirectTo:window.location.origin+window.location.pathname+"#account"}});
         if(error)throw error;
         if(result.session){authSession=result.session;profile={display_name:name,phone:""};accountMessage="Аккаунт создан.";accountMessageType="success";await loadProfileAndFavorites(result.user);renderAccount()}
         else{accountBusy=false;accountMessage="Почти готово! Если подтверждение почты включено, откройте письмо от Supabase, подтвердите адрес и затем войдите.";accountMessageType="success";renderAccount()}
