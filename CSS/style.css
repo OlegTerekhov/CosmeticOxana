@@ -320,3 +320,7 @@ button:active{transform:translateY(1px)}
 
 /* Consistent 35px rounding for all buttons */
 button,.button,.back-link,.category-filter,.add-button,.favorite,.nav-item,.quantity button,[role="button"]{border-radius:35px!important}
+
+
+/* Mobile: enforce pill-shaped controls, including iOS/PWA buttons */
+html body button,html body .button,html body .back-link,html body .category-filter,html body .add-button,html body .favorite,html body .nav-item,html body .quantity button,html body .remove-button,html body .empty-cart button,html body [role="button"]{border-radius:35px!important;-webkit-appearance:none;appearance:none}
