@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f4f1e8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="БЕРЕГ">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
   <meta name="description" content="Косметика юга России. Два бренда, одна любовь к Чёрному морю — Анапская косметика и Чёрное море.">
   <title>БЕРЕГ — косметика Чёрного моря</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +20,13 @@
 <body>
   <header class="topbar">
     <a class="wordmark" href="#home" aria-label="Берег — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА ЧЁРНОГО МОРЯ</small></span></a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#home" class="active" data-go="home">Главная</a>
+      <a href="#anapa" data-go="anapa">Анапская косметика</a>
+      <a href="#blacksea" data-go="blacksea">Чёрное море</a>
+      <a href="#cart" data-go="cart">Корзина <span id="desktopCartCount">0</span></a>
+      <a href="#contacts" data-go="contacts">Контакты</a>
+    </nav>
     <div class="top-actions">
       <span class="top-note">С любовью с юга России</span>
       <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Переключить тему"><span id="themeIcon">☾</span></button>
@@ -98,6 +111,13 @@
     <button class="nav-item" data-go="contacts"><span class="nav-icon">↗</span><span>Контакты</span></button>
   </nav>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="JS/app.js"></script>
+  <script src="JS/app.js?v=20261015-nav-pwa1"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js?v=20261015-1").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+      });
+    }
+  </script>
 </body>
 </html>
