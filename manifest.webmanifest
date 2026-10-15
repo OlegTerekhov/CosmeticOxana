@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "БЕРЕГ — косметика Чёрного моря",
+  "short_name": "БЕРЕГ",
+  "description": "Анапская косметика и Чёрное море — два бренда юга России.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f1e8",
+  "theme_color": "#f4f1e8",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
