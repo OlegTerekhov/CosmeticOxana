@@ -22,3 +22,24 @@ body{padding-bottom:0}
   .toast{bottom:calc(78px + env(safe-area-inset-bottom,0px));max-width:90%;white-space:normal;text-align:center}
 }
 @media(max-width:390px){.nav-item{font-size:8px}.bottom-nav{padding-left:3px;padding-right:3px}}
+
+
+/* Одна экранная навигация для компьютера и телефона — как в приложении. */
+.desktop-nav{display:none!important}
+.screen{display:none!important}
+.screen.active{display:block!important}
+.screen.active>.hero{display:flex!important}
+.page-section:not(.active){display:none!important}
+.page-section.active{display:block}
+.hero.page-section.active{display:flex!important}
+body{padding-bottom:88px}
+.bottom-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;z-index:1000;left:0;right:0;bottom:0;padding:9px clamp(8px,2vw,24px) calc(9px + env(safe-area-inset-bottom,0px));background:var(--nav);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line);box-shadow:0 -8px 30px #0000000d}
+.nav-item{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:54px;padding:3px 5px;color:var(--muted);font-size:10px;line-height:1.2;cursor:pointer;text-align:center;transition:color .2s}
+.nav-item.active{color:var(--sea)}
+.nav-icon{position:relative;font-size:23px;line-height:1.1;height:25px;display:block;font-weight:400}
+.nav-item.active .nav-icon{transform:translateY(-1px)}
+.nav-icon b{position:absolute;right:-10px;top:-4px;background:var(--sea);color:var(--bg);border-radius:20px;font-size:8px;font-weight:600;min-width:14px;height:14px;display:grid;place-items:center}
+.site-footer{display:none}
+.toast{bottom:calc(82px + env(safe-area-inset-bottom,0px))}
+@media(min-width:761px){body{padding-bottom:90px}.bottom-nav{padding:10px 7vw calc(10px + env(safe-area-inset-bottom,0px))}.nav-item{font-size:11px;min-height:58px}.nav-icon{font-size:25px;height:27px}.toast{bottom:100px}}
+@media(max-width:390px){.nav-item{font-size:8px;padding-left:1px;padding-right:1px}.bottom-nav{padding-left:3px;padding-right:3px}}
