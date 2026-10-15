@@ -307,3 +307,8 @@ button:active{transform:translateY(1px)}
   .product-name{font-size:20px}
   .add-button{font-size:7px}
 }
+
+
+/* Catalog titles: move as high as the layout allows */
+.catalog-heading{margin-top:-64px!important;padding-top:0!important}
+@media(max-width:760px){.catalog-heading{margin-top:-54px!important}}
