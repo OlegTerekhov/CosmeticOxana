@@ -105,11 +105,11 @@
     <button class="nav-item" data-go="contacts"><span class="nav-icon">↗</span><span>Контакты</span></button>
   </nav>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="JS/app.js?v=20261015-nav-pwa1"></script>
+  <script src="JS/app.js?v=20261015-audit2"></script>
   <script>
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=20261015-1").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+        navigator.serviceWorker.register("./sw.js?v=20261015-2").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
       });
     }
   </script>
