@@ -316,3 +316,7 @@ button:active{transform:translateY(1px)}
 /* Cart title: align with the higher catalog heading position */
 .cart-heading{margin-top:-64px!important;padding-top:0!important}
 @media(max-width:760px){.cart-heading{margin-top:-54px!important}}
+
+
+/* Consistent 35px rounding for all buttons */
+button,.button,.back-link,.category-filter,.add-button,.favorite,.nav-item,.quantity button,[role="button"]{border-radius:35px!important}
