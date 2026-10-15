@@ -327,3 +327,65 @@ html body button,html body .button,html body .back-link,html body .category-filt
 
 /* Remove the gold divider beneath the cart heading */
 .cart-items{border-top:0!important}
+
+
+/* Account area — same coastal, premium visual language */
+.top-actions{display:flex;align-items:center;gap:22px}
+.account-shortcut{display:inline-flex;align-items:center;gap:12px;padding:11px 17px;border:1px solid var(--line);border-radius:35px;background:transparent;color:var(--ink);font:600 11px Manrope,sans-serif;letter-spacing:.04em;cursor:pointer;transition:background .2s,border-color .2s}
+.account-shortcut span{color:var(--sand);font-size:15px}
+.account-shortcut:hover{background:var(--card);border-color:var(--sand)}
+.account-page{padding-top:50px;padding-bottom:90px;min-height:62vh}
+.account-heading{max-width:740px;margin:25px auto 42px;text-align:center}
+.account-heading h1{margin:0;color:var(--ink);font:400 clamp(42px,6vw,76px)/.98 "Cormorant Garamond",serif;letter-spacing:-.035em}
+.account-heading h1 em{color:var(--sand);font-weight:400}
+.account-heading>p:last-child{color:var(--muted);font-size:13px;line-height:1.8}
+.account-content{max-width:1000px;margin:0 auto}
+.account-panel{padding:clamp(22px,4vw,38px);border:1px solid var(--line);border-radius:8px;background:linear-gradient(145deg,rgba(32,63,59,.82),rgba(23,53,51,.94));box-shadow:0 18px 48px rgba(0,0,0,.12)}
+.auth-panel{max-width:510px;margin:0 auto}
+.account-panel-top{display:flex;align-items:center;gap:14px;margin-bottom:15px}
+.account-symbol{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(191,167,126,.4);border-radius:50%;color:var(--sand);font-size:23px}
+.account-panel h2,.account-welcome h2{margin:0 0 12px;font:400 clamp(29px,4vw,42px)/1.05 "Cormorant Garamond",serif;color:var(--ink)}
+.account-panel h3{margin:0 0 22px;font:400 30px/1.1 "Cormorant Garamond",serif;color:var(--ink)}
+.account-intro,.account-privacy{color:var(--muted);font-size:12px;line-height:1.8}
+.account-form{display:flex;flex-direction:column;gap:17px}
+.account-form label{display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:11px;letter-spacing:.06em}
+.account-form input{width:100%;min-height:48px;padding:13px 14px;border:1px solid var(--line);border-radius:3px;background:rgba(9,28,27,.36);color:var(--ink);font:400 13px Manrope,sans-serif;outline:none}
+.account-form input:focus{border-color:var(--sand);box-shadow:0 0 0 2px rgba(191,167,126,.1)}
+.account-form input::placeholder{color:rgba(164,187,180,.6)}
+.account-submit{width:100%;min-height:48px;margin-top:5px;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border:1px solid var(--sand);border-radius:35px!important;background:var(--sand);color:#142d2b;font:700 11px Manrope,sans-serif;cursor:pointer}
+.account-submit:disabled{opacity:.65;cursor:wait}
+.account-mode-toggle{align-self:center;border:0;background:none;color:var(--sand);font:600 11px Manrope,sans-serif;cursor:pointer;padding:8px}
+.account-privacy{margin:24px 0 0;text-align:center;font-size:10px}
+.account-message{margin:4px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:3px;font-size:12px;line-height:1.6}
+.account-message.success{color:#b7d8c4;border-color:rgba(143,196,183,.35)}
+.account-message.error{color:#f0b5a8;border-color:rgba(240,181,168,.35)}
+.account-message.info{color:var(--muted)}
+.account-dashboard{display:flex;flex-direction:column;gap:24px}
+.account-welcome{display:flex;align-items:center;gap:18px;padding:25px 0 30px;border-bottom:1px solid var(--line)}
+.account-welcome h2{margin-bottom:8px}
+.account-welcome h2 em{color:var(--sand);font-weight:400}
+.account-welcome p:last-child{margin:0;color:var(--muted);font-size:12px}
+.account-welcome .account-symbol{flex:0 0 50px;width:50px;height:50px}
+.account-welcome .overline{margin:0 0 9px}
+.account-logout{margin-left:auto;align-self:flex-start;border:1px solid var(--line);border-radius:35px;background:transparent;color:var(--muted);padding:10px 15px;font:600 10px Manrope,sans-serif;cursor:pointer}
+.account-columns{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.account-count{display:inline-grid;place-items:center;min-width:25px;height:25px;margin-left:6px;border:1px solid var(--line);border-radius:50%;font:500 11px Manrope;color:var(--sand);vertical-align:middle}
+.account-favorite-list{display:flex;flex-direction:column;gap:0}
+.account-favorite{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink)}
+.account-favorite strong{color:var(--sand);font-weight:600;white-space:nowrap}
+.favorites-panel>.account-mode-toggle{margin:20px 0 0;padding-left:0}
+.account-loading{padding:28px;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:760px){
+ .top-actions{gap:0}.top-note{display:none}.account-shortcut{padding:9px 11px;font-size:10px}
+ .account-page{padding-top:28px;padding-bottom:45px}
+ .account-heading{margin:18px auto 28px}
+ .account-columns{grid-template-columns:1fr}
+ .account-welcome{align-items:flex-start;gap:12px;flex-wrap:wrap}
+ .account-welcome .account-symbol{width:40px;height:40px;flex-basis:40px}
+ .account-welcome>div{flex:1;min-width:0}
+ .account-welcome h2{font-size:30px;overflow-wrap:anywhere}
+ .account-logout{margin-left:auto;padding:8px 11px}
+ .bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .nav-item{min-width:0;padding-left:2px;padding-right:2px}
+ .nav-item>span:last-child{font-size:8px;line-height:1.2}
+}
