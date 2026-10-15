@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/style.css?v=20261015-premium3">
+  <link rel="stylesheet" href="CSS/style.css?v=20261015-luxe1">
 </head>
 <body>
   <header class="topbar">
@@ -33,7 +33,8 @@
       <div class="hero-content">
         <span class="eyebrow"><i></i> ДВА БРЕНДА · ОДНО МОРЕ</span>
         <h1>Юг, который<br><em>остаётся с тобой.</em></h1>
-        <p>Уход, вдохновлённый Чёрным морем, солнцем и природой побережья. Найди свою часть юга.</p>
+        <p>Редкие моменты заботы о себе, вдохновлённые характером южного побережья. Две коллекции — два настроения Чёрного моря.</p>
+        <div class="hero-actions"><button class="button button-light" data-go="anapa">Открыть коллекцию <span>↗</span></button><button class="hero-secondary" data-go="blacksea">Магия Чёрного моря <span>↗</span></button></div>
         <div class="hero-foot"><span>44°53′ с. ш.</span><span class="foot-line"></span><span>АНАПА · ЧЁРНОЕ МОРЕ</span></div>
       </div>
       <div class="hero-index"><span>01</span><span class="index-line"></span><span>02</span></div>
@@ -70,14 +71,14 @@
   <section class="catalog section-wrap page-section screen" id="anapa">
       <div class="catalog-top"><button class="back-link" data-go="home">← На главную</button><span class="overline">КОЛЛЕКЦИЯ 01</span></div>
       <div class="catalog-heading"><p class="overline">Тепло южного солнца</p><h1>Анапская <em>косметика</em></h1><p>Знакомые ритуалы ухода с характером южного побережья.</p></div>
-      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="anapa" data-category="all">Все товары</button><button class="category-filter" data-category-filter="anapa" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="anapa" data-category="body">Уход за телом</button><button class="category-filter" data-category-filter="anapa" data-category="hair">Уход за волосами</button></div><div class="filter-row"><span class="catalog-count" id="anapaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="anapa"><option value="featured">Сначала избранное</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
+      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="anapa" data-category="all">Все товары</button><button class="category-filter" data-category-filter="anapa" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="anapa" data-category="body">Уход за телом</button></div><div class="filter-row"><span class="catalog-count" id="anapaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="anapa"><option value="featured">Подборка бренда</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
       <div class="product-grid" id="anapaProducts"></div>
     </section>
 
     <section class="catalog section-wrap page-section screen" id="blacksea">
       <div class="catalog-top"><button class="back-link" data-go="home">← На главную</button><span class="overline">КОЛЛЕКЦИЯ 02</span></div>
       <div class="catalog-heading"><p class="overline">Свежесть морской глубины</p><h1>Магия <em>Чёрного моря</em></h1><p>Уход, вдохновлённый природой и свободой побережья.</p></div>
-      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="blacksea" data-category="all">Все товары</button><button class="category-filter" data-category-filter="blacksea" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="blacksea" data-category="body">Уход за телом</button><button class="category-filter" data-category-filter="blacksea" data-category="hair">Уход за волосами</button></div><div class="filter-row"><span class="catalog-count" id="blackseaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="blacksea"><option value="featured">Сначала избранное</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
+      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="blacksea" data-category="all">Все товары</button><button class="category-filter" data-category-filter="blacksea" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="blacksea" data-category="body">Уход за телом</button></div><div class="filter-row"><span class="catalog-count" id="blackseaCount">Коллекция бренда</span><label class="sort-label">Сортировка <select class="sort-select" data-sort="blacksea"><option value="featured">Сначала избранное</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option></select></label></div>
       <div class="product-grid" id="blackseaProducts"></div>
     </section>
 
@@ -98,18 +99,18 @@
   <footer class="site-footer"><a class="footer-brand" href="#home">БЕРЕГ <span>≈</span></a><p>Два бренда. Одно море.</p><span>© 2026 · КОСМЕТИКА ЮГА РОССИИ</span></footer>
 
   <nav class="bottom-nav" aria-label="Основная навигация">
-    <button class="nav-item active" data-go="home"><span class="nav-icon">⌂</span><span>Главная</span></button>
-    <button class="nav-item" data-go="anapa"><span class="nav-icon">☼</span><span>Анапская<br>косметика</span></button>
-    <button class="nav-item" data-go="blacksea"><span class="nav-icon">≈</span><span>Магия Чёрного моря</span></button>
-    <button class="nav-item" data-go="cart"><span class="nav-icon cart-icon">♧<b id="navCartCount">0</b></span><span>Корзина</span></button>
-    <button class="nav-item" data-go="contacts"><span class="nav-icon">↗</span><span>Контакты</span></button>
+    <button class="nav-item active" data-go="home"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7M5.5 9v12h13V9M9.5 21v-7h5v7"/></svg></span><span>Главная</span></button>
+    <button class="nav-item" data-go="anapa"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.55 1.55m11.04 11.04 1.55 1.55M2 12h2.2m15.6 0H22M4.93 19.07l1.55-1.55M17.52 6.48l1.55-1.55"/></svg></span><span>Анапская<br>косметика</span></button>
+    <button class="nav-item" data-go="blacksea"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2M2 13c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2M2 18c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2"/></svg></span><span>Магия Чёрного моря</span></button>
+    <button class="nav-item" data-go="cart"><span class="nav-icon cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="navCartCount">0</b></span><span>Корзина</span></button>
+    <button class="nav-item" data-go="contacts"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span>Контакты</span></button>
   </nav>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="JS/app.js?v=20261015-premium3"></script>
+  <script src="JS/app.js?v=20261015-luxe1"></script>
   <script>
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=20261015-3").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+        navigator.serviceWorker.register("./sw.js?v=20261015-luxe1").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
       });
     }
   </script>
