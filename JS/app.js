@@ -80,6 +80,7 @@ document.addEventListener("click",async e=>{
   const nav=e.target.closest("[data-go]");if(nav){e.preventDefault();go(nav.dataset.go);return}
   const mode=e.target.closest("[data-account-mode]");if(mode){accountMode=mode.dataset.accountMode;accountMessage="";renderAccount();return}
   const logout=e.target.closest("[data-account-logout]");if(logout&&supabaseClient){const {error}=await supabaseClient.auth.signOut();if(error)toast("Не удалось выйти: "+error.message);else{authSession=null;profile={display_name:"",phone:""};renderAccount();toast("Вы вышли из аккаунта")}return}
+  if(e.target.id==="descriptionModal"){closeProductDescription();return}
   const description=e.target.closest("[data-description]");if(description){openProductDescription(description.dataset.description);return}
   const closeDescription=e.target.closest("[data-description-close]");if(closeDescription){closeProductDescription();return}
   const add=e.target.closest("[data-add]");if(add){addToCart(add.dataset.add);return}
