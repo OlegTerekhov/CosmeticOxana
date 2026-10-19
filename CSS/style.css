@@ -60,7 +60,7 @@ h1,h2,h3,.product-name,.cart-summary>div strong,.empty-cart strong{
   letter-spacing:-.025em;
 }
 .hero h1{font-weight:400;letter-spacing:-.035em;line-height:.94}
-.hero-content h1{width:100vw;max-width:none;margin-left:calc((100% - 100vw)/2);text-align:center}
+
 .hero h1 em,.intro h2 em,.section-heading h2 em,.brand-card h3 em,.manifesto h2 em,
 .catalog h1 em,.cart-heading h1 em,.contacts-layout h1 em{font-style:italic}
 .eyebrow,.overline,.section-label,.heading-aside,.brand-card-top,.product-brand,
