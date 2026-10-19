@@ -35,6 +35,9 @@ let profile = {display_name:"",phone:""};
 let isStoreAdmin = false;
 let sellerOrders = [];
 let sellerOrdersLoading = false;
+let pushEnabled = false;
+let pushBusy = false;
+let pushMessage = "";
 
 function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
@@ -60,7 +63,7 @@ function renderAccount(){
     return;
   }
   const favoriteProducts=state.favorites.map(id=>products.find(p=>p.id===id)).filter(Boolean);
-  const sellerPanel = isStoreAdmin ? `<section class="account-panel seller-orders-panel"><div class="seller-panel-heading"><div><p class="overline">МАГАЗИН БЕРЕГ</p><h3>Заказы <span class="account-count">${sellerOrders.filter(o=>o.status==="new").length}</span></h3></div><button class="account-mode-toggle" type="button" data-refresh-orders>Обновить ↻</button></div>${sellerOrdersLoading?`<p class="account-intro">Загружаем заказы…</p>`:sellerOrders.length?sellerOrders.map(renderSellerOrder).join(""):`<p class="account-intro">Пока нет заказов. Когда покупатель оформит заказ, он появится здесь.</p>`}</section>` : "";
+  const sellerPanel = isStoreAdmin ? `<section class="account-panel seller-orders-panel"><div class="seller-panel-heading"><div><p class="overline">МАГАЗИН БЕРЕГ</p><h3>Заказы <span class="account-count">${sellerOrders.filter(o=>o.status==="new").length}</span></h3></div><div class="seller-order-tools"><button class="account-mode-toggle" type="button" data-refresh-orders>Обновить ↻</button><button class="add-button" type="button" data-enable-push ${pushBusy?"disabled":""}>${pushBusy?"Подключаем…":pushEnabled?"Уведомления включены":"Включить уведомления"}</button></div></div>${pushMessage?`<p class="account-message ${pushEnabled?"success":"info"}">${escapeHTML(pushMessage)}</p>`:""}${sellerOrdersLoading?`<p class="account-intro">Загружаем заказы…</p>`:sellerOrders.length?sellerOrders.map(renderSellerOrder).join(""):`<p class="account-intro">Пока нет заказов. Когда покупатель оформит заказ, он появится здесь.</p>`}</section>` : "";
   root.innerHTML=`<div class="account-dashboard"><div class="account-welcome"><span class="account-symbol">≈</span><div><p class="overline">ВАШЕ ПРОСТРАНСТВО</p><h2>Здравствуйте<em>, ${escapeHTML(profile.display_name.trim()||authSession.user.email.split("@")[0])}.</em></h2><p>${escapeHTML(authSession.user.email)}</p></div><button class="account-logout" type="button" data-account-logout>Выйти ↗</button></div><div class="account-columns"><form id="profileForm" class="account-panel account-form"><p class="overline">ЛИЧНЫЕ ДАННЫЕ</p><h3>Ваш профиль</h3><label>Имя<input name="display_name" type="text" maxlength="80" value="${escapeHTML(profile.display_name)}" placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" maxlength="40" autocomplete="tel" value="${escapeHTML(profile.phone)}" placeholder="+7 …"></label><button class="button button-dark account-submit" type="submit" ${accountBusy?"disabled":""}>${accountBusy?"Сохраняем…":"Сохранить данные"} <span>↗</span></button>${accountMessage?'<p class="account-message '+escapeHTML(accountMessageType)+'">'+escapeHTML(accountMessage)+'</p>':""}</form><div class="account-panel favorites-panel"><p class="overline">ВАШИ НАХОДКИ</p><h3>Избранное <span class="account-count">${favoriteProducts.length}</span></h3>${favoriteProducts.length?'<div class="account-favorite-list">'+favoriteProducts.map(p=>'<div class="account-favorite"><span>'+escapeHTML(p.name)+'</span><strong>'+money(p.price)+'</strong></div>').join("")+'</div>':'<p class="account-intro">Здесь появятся средства, которые вы отметите сердечком в каталоге.</p>'}<button class="account-mode-toggle" type="button" data-go="anapa">Перейти к покупкам ↗</button></div></div>${sellerPanel}<p class="account-privacy">Избранное синхронизируется с вашим аккаунтом, когда вы вошли в систему.</p></div>`;
 }
 async function loadProfileAndFavorites(user){
@@ -90,6 +93,25 @@ async function loadStoreOrders(){
   else sellerOrders=data||[];
   if(state.page==="account")renderAccount();
 }
+function urlBase64ToUint8Array(base64String){const padding="=".repeat((4-base64String.length%4)%4);const base64=(base64String+padding).replace(/-/g,"+").replace(/_/g,"/");const raw=atob(base64);return Uint8Array.from([...raw].map(char=>char.charCodeAt(0)))}
+async function enableSellerNotifications(){
+  if(!isStoreAdmin||!authSession){pushMessage="Войдите в кабинет продавца, чтобы подключить уведомления.";renderAccount();return}
+  if(!("serviceWorker" in navigator)||!("PushManager" in window)||!("Notification" in window)){pushMessage="Этот браузер не поддерживает push-уведомления. Установите сайт как приложение и попробуйте Chrome или Safari.";pushEnabled=false;renderAccount();return}
+  pushBusy=true;pushMessage="";renderAccount();
+  try{
+    const permission=Notification.permission==="granted"?"granted":await Notification.requestPermission();
+    if(permission!=="granted")throw new Error("Разрешите уведомления для приложения в настройках браузера.");
+    const {data,error}=await supabaseClient.functions.invoke("seller-push-setup",{body:{}});
+    if(error||!data?.publicKey)throw new Error(data?.error||error?.message||"Не удалось настроить уведомления.");
+    const registration=await navigator.serviceWorker.ready;
+    let subscription=await registration.pushManager.getSubscription();
+    if(!subscription)subscription=await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(data.publicKey)});
+    const {error:saveError}=await supabaseClient.from("store_push_subscriptions").upsert({user_id:authSession.user.id,endpoint:subscription.endpoint,subscription:subscription.toJSON(),updated_at:new Date().toISOString()},{onConflict:"user_id,endpoint"});
+    if(saveError)throw new Error("Браузер подписан, но подписку не удалось сохранить. Попробуйте ещё раз.");
+    pushEnabled=true;pushMessage="Готово! Новые заказы будут приходить push-уведомлением на это устройство.";
+  }catch(error){pushEnabled=false;pushMessage=error.message||"Не удалось включить уведомления.";}
+  finally{pushBusy=false;renderAccount()}
+}
 function renderSellerOrder(order){
   const delivery={courier:"Курьер",pickup:"Самовывоз",post:"Почта"}[order.delivery_method]||order.delivery_method;
   const statusLabels={new:"Новый",processing:"В обработке",shipped:"Отправлен",completed:"Завершён",cancelled:"Отменён"};
@@ -109,6 +131,7 @@ document.addEventListener("click",async e=>{
   const mode=e.target.closest("[data-account-mode]");if(mode){accountMode=mode.dataset.accountMode;accountMessage="";renderAccount();return}
   const logout=e.target.closest("[data-account-logout]");if(logout&&supabaseClient){const {error}=await supabaseClient.auth.signOut();if(error)toast("Не удалось выйти: "+error.message);else{authSession=null;profile={display_name:"",phone:""};isStoreAdmin=false;sellerOrders=[];renderAccount();toast("Вы вышли из аккаунта")}return}
   if(e.target.closest("[data-refresh-orders]")){loadStoreOrders();return}
+  if(e.target.closest("[data-enable-push]")){enableSellerNotifications();return}
   const saveOrder=e.target.closest("[data-save-order-status]");if(saveOrder&&supabaseClient&&isStoreAdmin){const id=saveOrder.dataset.saveOrderStatus;const select=$(`[data-order-status="${id}"]`);const status=select?.value;if(!status)return;saveOrder.disabled=true;const {error}=await supabaseClient.from("store_orders").update({status,updated_at:new Date().toISOString()}).eq("id",id);saveOrder.disabled=false;if(error){toast("Не удалось обновить статус заказа")}else{sellerOrders=sellerOrders.map(order=>order.id===id?{...order,status}:order);renderAccount();toast("Статус заказа обновлён")}return}
   if(e.target.id==="descriptionModal"){closeProductDescription();return}
   const description=e.target.closest("[data-description]");if(description){openProductDescription(description.dataset.description);return}
