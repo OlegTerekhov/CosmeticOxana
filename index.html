@@ -109,13 +109,23 @@
     <button class="nav-item" data-go="account"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span><span>Кабинет</span></button>
     <button class="nav-item" data-go="contacts"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span>Контакты</span></button>
   </nav>
+  <div class="description-modal" id="descriptionModal" hidden>
+    <div class="description-modal-panel" role="dialog" aria-modal="true" aria-labelledby="descriptionModalTitle" aria-describedby="descriptionModalText">
+      <button class="description-modal-close" id="descriptionModalClose" type="button" data-description-close aria-label="Закрыть окно описания">×</button>
+      <p class="overline">ОПИСАНИЕ ТОВАРА</p>
+      <h2 id="descriptionModalTitle">Название товара</h2>
+      <p class="description-modal-type" id="descriptionModalType"></p>
+      <p class="description-modal-text" id="descriptionModalText">Описание этого товара скоро появится.</p>
+      <button class="add-button description-modal-done" type="button" data-description-close>Закрыть</button>
+    </div>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="JS/app.js?v=20261019-blacksea-no-descriptions"></script>
+  <script src="JS/app.js?v=20261019-product-description-modal"></script>
   <script>
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=20261019-blacksea-no-descriptions").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+        navigator.serviceWorker.register("./sw.js?v=20261019-product-description-modal").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
       });
     }
   </script>
