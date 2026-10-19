@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/style.css?v=20261019-hero-reverted-v13">
+  <link rel="stylesheet" href="CSS/style.css?v=20261019-story-section-v14">
 </head>
 <body>
   <header class="topbar">
@@ -40,11 +40,7 @@
       <div class="hero-index"><span>01</span><span class="index-line"></span><span>02</span></div>
     </section>
 
-    <section class="intro section-wrap">
-      <div class="section-label"><span>01</span><span>НАША ИСТОРИЯ</span></div>
-      <div class="intro-copy"><p class="overline">Море ближе, чем кажется</p><h2>Почувствуй<br>свой <em>юг.</em></h2></div>
-      <p class="intro-text">Мы собрали два бренда, рождённых на юге России. У каждого — свой характер, свой взгляд на уход и одна общая стихия: Чёрное море.</p>
-    </section>
+
 
     <section class="brands section-wrap" id="brands">
       <div class="section-heading"><div><p class="overline">Выбери своё побережье</p><h2>Две истории.<br><em>Одно море.</em></h2></div><span class="heading-aside">КОЛЛЕКЦИИ / 2026</span></div>
@@ -62,8 +58,10 @@
       </div>
     </section>
 
-    <section class="manifesto">
-      <div class="manifesto-image"></div><div class="manifesto-copy"><span class="overline">НАСТРОЕНИЕ ПОБЕРЕЖЬЯ</span><h2>Соль на коже.<br>Солнце в волосах.<br><em>Море внутри.</em></h2><p>Маленький ежедневный ритуал, который возвращает к самому важному — к себе.</p><span class="manifesto-sign">С юга — с любовью&nbsp; ↗</span></div>
+    <section class="intro section-wrap">
+      <div class="section-label"><span>01</span><span>НАША ИСТОРИЯ</span></div>
+      <div class="intro-copy"><p class="overline">Море ближе, чем кажется</p><h2>Почувствуй<br>свой <em>юг.</em></h2></div>
+      <p class="intro-text">Мы собрали два бренда, рождённых на юге России. У каждого — свой характер, свой взгляд на уход и одна общая стихия: Чёрное море.</p>
     </section>
 
       </div>
@@ -121,11 +119,11 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="JS/app.js?v=20261019-hero-reverted-v13"></script>
+  <script src="JS/app.js?v=20261019-story-section-v14"></script>
   <script>
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=20261019-hero-reverted-v13").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+        navigator.serviceWorker.register("./sw.js?v=20261019-story-section-v14").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
       });
     }
   </script>
