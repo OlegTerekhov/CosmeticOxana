@@ -449,3 +449,24 @@ body{padding-bottom:82px!important}
 .product-image-placeholder .product-tag,.product-image-placeholder .favorite{z-index:1}
 .product-image-placeholder .product-tag{max-width:calc(100% - 65px)}
 @media(min-width:761px){.product-name{overflow-wrap:anywhere}}
+
+
+/* Product description modal */
+.product-buy{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.product-actions{display:flex;align-items:center;gap:7px;min-width:0}
+.product-actions .add-button{min-width:0}
+@media(max-width:560px){
+  .product-buy{align-items:stretch;flex-direction:column;gap:9px}
+  .product-actions{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:7px}
+  .product-actions .add-button{width:100%;min-width:0;padding:10px 4px;font-size:8px;letter-spacing:.01em}
+}
+.description-modal[hidden]{display:none!important}
+.description-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(3,17,16,.76);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.description-modal-panel{position:relative;width:min(100%,520px);max-height:min(82vh,720px);overflow-y:auto;padding:clamp(28px,5vw,46px);background:linear-gradient(145deg,#1c3a34,#102826);border:1px solid rgba(213,189,145,.34);box-shadow:0 28px 90px rgba(0,0,0,.38);color:var(--ink)}
+.description-modal-panel>.overline{margin:0 45px 17px 0;color:var(--sand);font-size:9px;letter-spacing:.2em}
+.description-modal-panel h2{margin:0 35px 15px 0;font:400 clamp(29px,5vw,42px)/1.08 var(--serif);letter-spacing:-.02em}
+.description-modal-type{margin:0 0 20px;color:var(--sand);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.description-modal-text{margin:0;color:#d0dcd3;font-size:13px;line-height:1.9;white-space:pre-line}
+.description-modal-close{position:absolute;right:17px;top:15px;width:38px;height:38px;border:1px solid rgba(213,189,145,.35);background:transparent;color:var(--ink);font-size:25px;line-height:1;cursor:pointer}
+.description-modal-done{margin-top:27px;min-width:120px}
+body.modal-open{overflow:hidden}
