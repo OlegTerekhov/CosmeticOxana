@@ -389,3 +389,50 @@ html body button,html body .button,html body .back-link,html body .category-filt
  .nav-item{min-width:0;padding-left:2px;padding-right:2px}
  .nav-item>span:last-child{font-size:8px;line-height:1.2}
 }
+
+
+/* Navigation: keep all six sections in one fixed horizontal row on every screen. */
+body{padding-bottom:82px!important}
+.bottom-nav{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  position:fixed!important;
+  z-index:1000!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  width:100%;
+  padding:9px clamp(10px,3vw,48px) calc(9px + env(safe-area-inset-bottom,0px))!important;
+  background:var(--nav)!important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--line);
+  box-shadow:0 -8px 28px rgba(0,0,0,.14);
+}
+.bottom-nav .nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  min-width:0!important;
+  min-height:48px;
+  padding:3px 5px!important;
+  color:var(--muted);
+  font-size:clamp(9px,.8vw,11px)!important;
+  line-height:1.2;
+  text-align:center;
+  white-space:normal;
+}
+.bottom-nav .nav-item.active{color:var(--sea)}
+.bottom-nav .nav-icon{display:grid;place-items:center;width:24px;height:24px;font-size:22px;line-height:1}
+.bottom-nav .nav-icon svg{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bottom-nav .nav-item>span:last-child{font-size:inherit!important;line-height:1.2}
+@media(max-width:560px){
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))!important}
+  .bottom-nav{padding-left:4px!important;padding-right:4px!important}
+  .bottom-nav .nav-item{padding-left:1px!important;padding-right:1px!important;font-size:8px!important;gap:4px}
+  .bottom-nav .nav-item>span:last-child{font-size:8px!important}
+  .bottom-nav .nav-icon{width:22px;height:22px}
+  .bottom-nav .nav-icon svg{width:20px;height:20px}
+}
