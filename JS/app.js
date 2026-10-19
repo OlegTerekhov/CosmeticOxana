@@ -85,6 +85,7 @@ async function loadProfileAndFavorites(user){
 }
 async function loadStoreOrders(){
   if(!supabaseClient||!authSession||!isStoreAdmin)return;
+  try{const registration=await navigator.serviceWorker.ready;pushEnabled=!!(await registration.pushManager.getSubscription())}catch{}
   sellerOrdersLoading=true;
   if(state.page==="account")renderAccount();
   const {data,error}=await supabaseClient.from("store_orders").select("*").order("created_at",{ascending:false}).limit(100);
