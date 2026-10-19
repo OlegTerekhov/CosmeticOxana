@@ -269,7 +269,12 @@ button:active{transform:translateY(1px)}
 @media(min-width:761px){
   .hero-content{padding-left:clamp(90px,10vw,170px)}
   .brand-card{height:clamp(470px,48vw,690px)}
-  .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 18px}
+  .product-name{font-size:clamp(18px,1.55vw,24px)}
+  .product-description{font-size:9px}
+  .product-info{padding-top:14px}
+  .product-buy{gap:6px}
+  .add-button{padding:9px 8px;font-size:8px;letter-spacing:.04em}
 }
 @media(max-width:760px){
   .hero h1{font-size:clamp(54px,11vw,78px)}
