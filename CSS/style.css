@@ -478,3 +478,20 @@ body.modal-open{overflow:hidden}
   .hero-content{width:100%;max-width:none}
   .hero h1{text-align:center}
 }
+
+
+/* Keep both brand catalog cards side by side on phones. */
+@media(max-width:560px){
+  .brand-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .brand-card{height:390px;height:112vw;min-height:330px;max-height:430px}
+  .brand-card-top{top:13px;left:12px;right:12px;gap:6px;font-size:7px;letter-spacing:.08em}
+  .brand-card-bottom{left:13px;right:10px;bottom:18px}
+  .brand-card-bottom>p{font-size:9px;line-height:1.45;margin-bottom:9px}
+  .brand-card h3{font-size:clamp(27px,7vw,39px);line-height:.98;overflow-wrap:anywhere;margin-bottom:15px}
+  .brand-card .text-link{gap:10px;font-size:9px;padding-bottom:7px}
+}
+@media(max-width:360px){
+  .brand-card{min-height:310px}
+  .brand-card h3{font-size:clamp(24px,6.8vw,30px)}
+  .brand-card-top{font-size:6px}
+}
