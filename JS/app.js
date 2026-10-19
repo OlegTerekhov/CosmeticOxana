@@ -32,6 +32,9 @@ let accountBusy = false;
 let accountMessage = "";
 let accountMessageType = "info";
 let profile = {display_name:"",phone:""};
+let isStoreAdmin = false;
+let sellerOrders = [];
+let sellerOrdersLoading = false;
 
 function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
@@ -57,10 +60,14 @@ function renderAccount(){
     return;
   }
   const favoriteProducts=state.favorites.map(id=>products.find(p=>p.id===id)).filter(Boolean);
-  root.innerHTML=`<div class="account-dashboard"><div class="account-welcome"><span class="account-symbol">≈</span><div><p class="overline">ВАШЕ ПРОСТРАНСТВО</p><h2>Здравствуйте<em>, ${escapeHTML(profile.display_name.trim()||authSession.user.email.split("@")[0])}.</em></h2><p>${escapeHTML(authSession.user.email)}</p></div><button class="account-logout" type="button" data-account-logout>Выйти ↗</button></div><div class="account-columns"><form id="profileForm" class="account-panel account-form"><p class="overline">ЛИЧНЫЕ ДАННЫЕ</p><h3>Ваш профиль</h3><label>Имя<input name="display_name" type="text" maxlength="80" value="${escapeHTML(profile.display_name)}" placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" maxlength="40" autocomplete="tel" value="${escapeHTML(profile.phone)}" placeholder="+7 …"></label><button class="button button-dark account-submit" type="submit" ${accountBusy?"disabled":""}>${accountBusy?"Сохраняем…":"Сохранить данные"} <span>↗</span></button>${accountMessage?'<p class="account-message '+escapeHTML(accountMessageType)+'">'+escapeHTML(accountMessage)+'</p>':""}</form><div class="account-panel favorites-panel"><p class="overline">ВАШИ НАХОДКИ</p><h3>Избранное <span class="account-count">${favoriteProducts.length}</span></h3>${favoriteProducts.length?'<div class="account-favorite-list">'+favoriteProducts.map(p=>'<div class="account-favorite"><span>'+escapeHTML(p.name)+'</span><strong>'+money(p.price)+'</strong></div>').join("")+'</div>':'<p class="account-intro">Здесь появятся средства, которые вы отметите сердечком в каталоге.</p>'}<button class="account-mode-toggle" type="button" data-go="anapa">Перейти к покупкам ↗</button></div></div><p class="account-privacy">Избранное синхронизируется с вашим аккаунтом, когда вы вошли в систему.</p></div>`;
+  const sellerPanel = isStoreAdmin ? `<section class="account-panel seller-orders-panel"><div class="seller-panel-heading"><div><p class="overline">МАГАЗИН БЕРЕГ</p><h3>Заказы <span class="account-count">${sellerOrders.filter(o=>o.status==="new").length}</span></h3></div><button class="account-mode-toggle" type="button" data-refresh-orders>Обновить ↻</button></div>${sellerOrdersLoading?`<p class="account-intro">Загружаем заказы…</p>`:sellerOrders.length?sellerOrders.map(renderSellerOrder).join(""):`<p class="account-intro">Пока нет заказов. Когда покупатель оформит заказ, он появится здесь.</p>`}</section>` : "";
+  root.innerHTML=`<div class="account-dashboard"><div class="account-welcome"><span class="account-symbol">≈</span><div><p class="overline">ВАШЕ ПРОСТРАНСТВО</p><h2>Здравствуйте<em>, ${escapeHTML(profile.display_name.trim()||authSession.user.email.split("@")[0])}.</em></h2><p>${escapeHTML(authSession.user.email)}</p></div><button class="account-logout" type="button" data-account-logout>Выйти ↗</button></div><div class="account-columns"><form id="profileForm" class="account-panel account-form"><p class="overline">ЛИЧНЫЕ ДАННЫЕ</p><h3>Ваш профиль</h3><label>Имя<input name="display_name" type="text" maxlength="80" value="${escapeHTML(profile.display_name)}" placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" maxlength="40" autocomplete="tel" value="${escapeHTML(profile.phone)}" placeholder="+7 …"></label><button class="button button-dark account-submit" type="submit" ${accountBusy?"disabled":""}>${accountBusy?"Сохраняем…":"Сохранить данные"} <span>↗</span></button>${accountMessage?'<p class="account-message '+escapeHTML(accountMessageType)+'">'+escapeHTML(accountMessage)+'</p>':""}</form><div class="account-panel favorites-panel"><p class="overline">ВАШИ НАХОДКИ</p><h3>Избранное <span class="account-count">${favoriteProducts.length}</span></h3>${favoriteProducts.length?'<div class="account-favorite-list">'+favoriteProducts.map(p=>'<div class="account-favorite"><span>'+escapeHTML(p.name)+'</span><strong>'+money(p.price)+'</strong></div>').join("")+'</div>':'<p class="account-intro">Здесь появятся средства, которые вы отметите сердечком в каталоге.</p>'}<button class="account-mode-toggle" type="button" data-go="anapa">Перейти к покупкам ↗</button></div></div>${sellerPanel}<p class="account-privacy">Избранное синхронизируется с вашим аккаунтом, когда вы вошли в систему.</p></div>`;
 }
 async function loadProfileAndFavorites(user){
   if(!supabaseClient||!user)return;
+  const {data:adminRecord}=await supabaseClient.from("store_admins").select("user_id").eq("user_id",user.id).maybeSingle();
+  isStoreAdmin=!!adminRecord;
+  if(isStoreAdmin)loadStoreOrders();
   const {data:profileData,error:profileError}=await supabaseClient.from("profiles").select("display_name,phone").eq("id",user.id).maybeSingle();
   if(!profileError&&profileData)profile={display_name:profileData.display_name||"",phone:profileData.phone||""};
   const {data:favoritesData,error:favoritesError}=await supabaseClient.from("user_favorites").select("product_id").eq("user_id",user.id);
@@ -73,6 +80,23 @@ async function loadProfileAndFavorites(user){
   }
   if(state.page==="account")renderAccount();
 }
+async function loadStoreOrders(){
+  if(!supabaseClient||!authSession||!isStoreAdmin)return;
+  sellerOrdersLoading=true;
+  if(state.page==="account")renderAccount();
+  const {data,error}=await supabaseClient.from("store_orders").select("*").order("created_at",{ascending:false}).limit(100);
+  sellerOrdersLoading=false;
+  if(error){accountMessage="Не удалось загрузить заказы. Проверьте соединение.";accountMessageType="error";sellerOrders=[]}
+  else sellerOrders=data||[];
+  if(state.page==="account")renderAccount();
+}
+function renderSellerOrder(order){
+  const delivery={courier:"Курьер",pickup:"Самовывоз",post:"Почта"}[order.delivery_method]||order.delivery_method;
+  const statusLabels={new:"Новый",processing:"В обработке",shipped:"Отправлен",completed:"Завершён",cancelled:"Отменён"};
+  const items=Array.isArray(order.items)?order.items.map(item=>`<div class="seller-order-item"><span>${escapeHTML(item.name)} × ${Number(item.qty)||0}</span><strong>${money(Number(item.line_total)||0)}</strong></div>`).join(""):"";
+  const date=new Date(order.created_at).toLocaleString("ru-RU",{dateStyle:"medium",timeStyle:"short"});
+  return `<article class="seller-order" data-order-id="${escapeHTML(order.id)}"><div class="seller-order-top"><strong>Заказ №${escapeHTML(order.order_number)}</strong><span>${escapeHTML(date)}</span></div><div class="seller-order-customer"><strong>${escapeHTML(order.customer_name)}</strong><a href="tel:${escapeHTML(order.customer_phone.replace(/[^+0-9]/g,""))}">${escapeHTML(order.customer_phone)}</a></div><div class="seller-order-items">${items}</div><div class="seller-order-meta"><span>${escapeHTML(delivery)}</span><strong>${money(Number(order.total)||0)}</strong></div>${order.delivery_address?`<p class="seller-order-note"><b>Адрес:</b> ${escapeHTML(order.delivery_address)}</p>`:""}${order.customer_comment?`<p class="seller-order-note"><b>Комментарий:</b> ${escapeHTML(order.customer_comment)}</p>`:""}<div class="seller-order-bottom"><label>Статус<select data-order-status="${escapeHTML(order.id)}">${Object.entries(statusLabels).map(([value,label])=>`<option value="${value}" ${order.status===value?"selected":""}>${label}</option>`).join("")}</select></label><button class="add-button" type="button" data-save-order-status="${escapeHTML(order.id)}">Сохранить</button></div></article>`;
+}
 if(supabaseClient){
   supabaseClient.auth.getSession().then(({data})=>{authSession=data.session||null;if(authSession)loadProfileAndFavorites(authSession.user);if(state.page==="account")renderAccount()});
   supabaseClient.auth.onAuthStateChange((_event,session)=>{authSession=session||null;if(authSession){Promise.resolve().then(()=>loadProfileAndFavorites(authSession.user))}else{profile={display_name:"",phone:""};if(state.page==="account")renderAccount()}});
@@ -83,7 +107,9 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductDescript
 document.addEventListener("click",async e=>{
   const nav=e.target.closest("[data-go]");if(nav){e.preventDefault();go(nav.dataset.go);return}
   const mode=e.target.closest("[data-account-mode]");if(mode){accountMode=mode.dataset.accountMode;accountMessage="";renderAccount();return}
-  const logout=e.target.closest("[data-account-logout]");if(logout&&supabaseClient){const {error}=await supabaseClient.auth.signOut();if(error)toast("Не удалось выйти: "+error.message);else{authSession=null;profile={display_name:"",phone:""};renderAccount();toast("Вы вышли из аккаунта")}return}
+  const logout=e.target.closest("[data-account-logout]");if(logout&&supabaseClient){const {error}=await supabaseClient.auth.signOut();if(error)toast("Не удалось выйти: "+error.message);else{authSession=null;profile={display_name:"",phone:""};isStoreAdmin=false;sellerOrders=[];renderAccount();toast("Вы вышли из аккаунта")}return}
+  if(e.target.closest("[data-refresh-orders]")){loadStoreOrders();return}
+  const saveOrder=e.target.closest("[data-save-order-status]");if(saveOrder&&supabaseClient&&isStoreAdmin){const id=saveOrder.dataset.saveOrderStatus;const select=$(`[data-order-status="${id}"]`);const status=select?.value;if(!status)return;saveOrder.disabled=true;const {error}=await supabaseClient.from("store_orders").update({status,updated_at:new Date().toISOString()}).eq("id",id);saveOrder.disabled=false;if(error){toast("Не удалось обновить статус заказа")}else{sellerOrders=sellerOrders.map(order=>order.id===id?{...order,status}:order);renderAccount();toast("Статус заказа обновлён")}return}
   if(e.target.id==="descriptionModal"){closeProductDescription();return}
   const description=e.target.closest("[data-description]");if(description){openProductDescription(description.dataset.description);return}
   const closeDescription=e.target.closest("[data-description-close]");if(closeDescription){closeProductDescription();return}
@@ -109,6 +135,19 @@ document.addEventListener("submit",async e=>{
     finally{accountBusy=false}
     return;
   }
+  if(e.target.id==="checkoutForm"){
+    e.preventDefault();if(accountBusy)return;
+    if(!state.cart.length){closeCheckout();toast("Корзина пуста");return}
+    const form=e.target;const data=new FormData(form);const deliveryMethod=String(data.get("delivery_method")||"");
+    const payload={customerName:String(data.get("customer_name")||"").trim(),customerPhone:String(data.get("customer_phone")||"").trim(),deliveryMethod,deliveryAddress:String(data.get("delivery_address")||"").trim(),customerComment:String(data.get("customer_comment")||"").trim(),website:String(data.get("website")||""),items:state.cart.map(item=>({id:item.id,qty:item.qty}))};
+    const submit=form.querySelector("button[type=submit]");submit.disabled=true;submit.textContent="Оформляем заказ…";
+    try{
+      const response=await fetch(SUPABASE_URL+"/functions/v1/create-store-order",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error(result.error||"Не удалось оформить заказ.");
+      state.cart=[];save("bereg-cart",state.cart);renderCart();form.reset();const success=$("#checkoutSuccess");success.innerHTML=`<span class="checkout-success-mark">✓</span><p class="overline">ЗАКАЗ СОХРАНЁН</p><h2>Спасибо за ваш выбор.</h2><p>Номер заказа <strong>№${escapeHTML(result.order.number)}</strong>.</p><p>Продавец свяжется с вами для подтверждения заказа и уточнения деталей.</p><button class="button button-dark" type="button" data-close-checkout>Продолжить покупки <span>↗</span></button>`;success.hidden=false;form.hidden=true;
+    }catch(error){const message=$("#checkoutError");message.textContent=error.message||"Не удалось оформить заказ. Попробуйте ещё раз.";message.hidden=false}
+    finally{submit.disabled=false;submit.innerHTML='Подтвердить заказ <span>↗</span>'}return;
+  }
   if(e.target.id==="profileForm"){
     e.preventDefault();if(!supabaseClient||!authSession||accountBusy)return;
     const data=new FormData(e.target);profile={display_name:String(data.get("display_name")||"").trim(),phone:String(data.get("phone")||"").trim()};accountBusy=true;renderAccount();
@@ -118,6 +157,10 @@ document.addEventListener("submit",async e=>{
 });
 function authErrorMessage(error){const message=String(error?.message||"");if(/invalid login credentials/i.test(message))return "Неверная почта или пароль.";if(/already registered|user already registered/i.test(message))return "Этот адрес уже зарегистрирован. Попробуйте войти.";if(/password should be at least/i.test(message))return "Пароль должен содержать не менее 8 символов.";if(/email not confirmed/i.test(message))return "Сначала подтвердите электронную почту по ссылке в письме.";if(/rate limit/i.test(message))return "Слишком много попыток. Подождите немного и повторите.";return message||"Не удалось выполнить действие. Попробуйте ещё раз."}
 
-$("#checkoutButton").addEventListener("click",()=>toast("Оформление заказа пока не подключено"));
+function openCheckout(){if(!state.cart.length){toast("Сначала добавьте товары в корзину");return}$("#checkoutError").hidden=true;$("#checkoutSuccess").hidden=true;$("#checkoutForm").hidden=false;$("#checkoutModal").hidden=false;document.body.classList.add("modal-open");$("#checkoutModal").querySelector("input[name=customer_name]").focus()}
+function closeCheckout(){const modal=$("#checkoutModal");if(!modal)return;modal.hidden=true;document.body.classList.remove("modal-open")}
+$("#checkoutButton").addEventListener("click",openCheckout);
+document.addEventListener("click",e=>{if(e.target.closest("[data-close-checkout]"))closeCheckout();if(e.target.id==="checkoutModal")closeCheckout()});
+$("#checkoutForm").addEventListener("change",e=>{if(e.target.name==="delivery_method"){const pickup=e.target.value==="pickup";$("#deliveryAddressField").hidden=pickup;$("#checkoutForm").elements.delivery_address.required=!pickup;}});
 renderCatalog("anapa");renderCatalog("blacksea");renderCart();
 const initial=location.hash.replace("#","");if(["anapa","blacksea","cart","contacts","account"].includes(initial))go(initial);else go("home");
