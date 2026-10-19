@@ -82,7 +82,7 @@
       <div class="catalog-top"><span class="overline">ВАШ ВЫБОР</span><span class="cart-number" id="cartCountLabel">0 товаров</span></div>
       <div class="cart-heading"><h1>Ваша <em>корзина.</em></h1></div>
       <div id="cartItems" class="cart-items"></div>
-      <div class="cart-summary" id="cartSummary"><div><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark" id="checkoutButton">Перейти к оформлению <span>↗</span></button><p>Демонстрационный магазин: оформление заказа пока не подключено.</p></div>
+      <div class="cart-summary" id="cartSummary"><div><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark" id="checkoutButton">Перейти к оформлению <span>↗</span></button><p>После отправки заявки продавец свяжется с вами и подтвердит заказ.</p></div>
     </section>
 
     <section class="contacts-page section-wrap page-section screen" id="contacts">
@@ -107,6 +107,26 @@
     <button class="nav-item" data-go="account"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span><span>Кабинет</span></button>
     <button class="nav-item" data-go="contacts"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span>Контакты</span></button>
   </nav>
+  <div class="checkout-modal" id="checkoutModal" hidden>
+    <div class="checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="description-modal-close" type="button" data-close-checkout aria-label="Закрыть оформление">×</button>
+      <p class="overline">ВАШ ЗАКАЗ · БЕРЕГ</p>
+      <h2 id="checkoutTitle">Оформление <em>заказа.</em></h2>
+      <p class="checkout-lead">Оставьте контакты — продавец свяжется с вами для подтверждения деталей.</p>
+      <form id="checkoutForm" class="account-form checkout-form">
+        <label>Ваше имя<input name="customer_name" type="text" maxlength="120" autocomplete="name" placeholder="Как к вам обращаться" required></label>
+        <label>Телефон для связи<input name="customer_phone" type="tel" maxlength="40" autocomplete="tel" placeholder="+7 …" required></label>
+        <label>Способ получения<select name="delivery_method" required><option value="courier">Курьерская доставка</option><option value="post">Почта / отправка</option><option value="pickup">Самовывоз</option></select></label>
+        <label id="deliveryAddressField">Адрес доставки<input name="delivery_address" type="text" maxlength="500" autocomplete="street-address" placeholder="Город, улица, дом, квартира" required></label>
+        <label>Комментарий к заказу<textarea name="customer_comment" rows="3" maxlength="1000" placeholder="Удобное время для связи, пожелания…"></textarea></label>
+        <label class="checkout-honeypot" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <p class="checkout-error" id="checkoutError" role="alert" hidden></p>
+        <button class="button button-dark account-submit" type="submit">Подтвердить заказ <span>↗</span></button>
+        <p class="checkout-consent">Нажимая кнопку, вы отправляете продавцу контактные данные и состав заказа для его обработки.</p>
+      </form>
+      <div class="checkout-success" id="checkoutSuccess" hidden></div>
+    </div>
+  </div>
   <div class="description-modal" id="descriptionModal" hidden>
     <div class="description-modal-panel" role="dialog" aria-modal="true" aria-labelledby="descriptionModalTitle" aria-describedby="descriptionModalText">
       <button class="description-modal-close" id="descriptionModalClose" type="button" data-description-close aria-label="Закрыть окно описания">×</button>
