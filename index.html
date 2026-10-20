@@ -138,9 +138,18 @@
     </div>
   </div>
   <div class="product-image-modal" id="productImageModal" hidden>
-    <button class="product-image-modal-close" id="productImageModalClose" type="button" data-image-close aria-label="Закрыть увеличенное фото">×</button>
-    <img id="productImageModalImage" alt="Увеличенное фото товара">
-    <p>Нажмите на фото или Esc, чтобы закрыть</p>
+    <button class="product-image-modal-close" id="productImageModalClose" type="button" data-image-close aria-label="Закрыть карточку товара">×</button>
+    <div class="product-image-modal-panel" role="dialog" aria-modal="true" aria-labelledby="productImageModalTitle">
+      <div class="product-image-modal-visual"><img id="productImageModalImage" alt="Увеличенное фото товара"></div>
+      <div class="product-image-modal-info">
+        <p class="overline" id="productImageModalBrand">БЕРЕГ</p>
+        <p class="product-image-modal-type" id="productImageModalType"></p>
+        <h2 id="productImageModalTitle">Название товара</h2>
+        <p class="product-image-modal-description" id="productImageModalDescription"></p>
+        <div class="product-image-modal-bottom"><strong id="productImageModalPrice"></strong><button class="add-button" id="productImageModalAdd" type="button" data-add="">В корзину&nbsp; +</button></div>
+      </div>
+    </div>
+    <p class="product-image-modal-hint">Нажмите вне карточки или Esc, чтобы закрыть</p>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
