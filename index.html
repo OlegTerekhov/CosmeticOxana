@@ -137,6 +137,11 @@
       <button class="add-button description-modal-done" type="button" data-description-close>Закрыть</button>
     </div>
   </div>
+  <div class="product-image-modal" id="productImageModal" hidden>
+    <button class="product-image-modal-close" id="productImageModalClose" type="button" data-image-close aria-label="Закрыть увеличенное фото">×</button>
+    <img id="productImageModalImage" alt="Увеличенное фото товара">
+    <p>Нажмите на фото или Esc, чтобы закрыть</p>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="JS/app.js?v=20261019-orders-v21"></script>
