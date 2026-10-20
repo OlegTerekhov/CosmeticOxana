@@ -1,12 +1,4 @@
 const products = [
-  {id:"a1",brand:"anapa",brandName:"Анапская косметика",name:"Энзимная пудра с витамином C",type:"Энзимная пудра",description:"",price:999,image:"",category:"face",tag:"УХОД ЗА ЛИЦОМ"},
-  {id:"a2",brand:"anapa",brandName:"Анапская косметика",name:"Себорегулирующая сыворотка для лица",type:"Сыворотка для лица",description:"",price:999,image:"",category:"face",tag:"УХОД ЗА ЛИЦОМ"},
-  {id:"a3",brand:"anapa",brandName:"Анапская косметика",name:"Пенка для умывания с экстрактом красного вина",type:"Пенка для умывания",description:"",price:999,image:"",category:"face",tag:"ОЧИЩЕНИЕ"},
-  {id:"a4",brand:"anapa",brandName:"Анапская косметика",name:"Гидрофильное масло для лица",type:"Гидрофильное масло",description:"",price:999,image:"",category:"face",tag:"ОЧИЩЕНИЕ"},
-  {id:"a5",brand:"anapa",brandName:"Анапская косметика",name:"Сахарный скраб для тела «Клубничный чизкейк»",type:"Сахарный скраб для тела",description:"",price:999,image:"",category:"body",tag:"УХОД ЗА ТЕЛОМ"},
-  {id:"a6",brand:"anapa",brandName:"Анапская косметика",name:"Соль для ванны «7 трав»",type:"Соль для ванны",description:"",price:999,image:"",category:"body",tag:"SPA-УХОД"},
-  {id:"a7",brand:"anapa",brandName:"Анапская косметика",name:"Крем-молочко для тела с экстрактом водорослей",type:"Крем-молочко для тела",description:"",price:999,image:"",category:"body",tag:"УХОД ЗА ТЕЛОМ"},
-  {id:"a8",brand:"anapa",brandName:"Анапская косметика",name:"Крем-бальзам питательный",type:"Крем-бальзам",description:"",price:999,image:"",category:"face",tag:"ПИТАНИЕ"},
   {id:"b1",brand:"blacksea",brandName:"Магия Чёрного моря",name:"Бутилированная морская вода",type:"Бутилированная морская вода",description:"Для приготовления домашних средств косметического ухода и промывания полости носа в домашних условиях.",price:999,image:"./images/Морская%20вода.jpg",category:"face",tag:"МОРСКАЯ ВОДА"},
   {id:"b3",brand:"blacksea",brandName:"Магия Чёрного моря",name:"Спрей для волос",type:"Спрей для волос",description:"Для ухода за волосами и кожей головы.",price:999,image:"./images/Спрей%20для%20волос.jpg",category:"body",tag:"УХОД ЗА ВОЛОСАМИ"},
   {id:"b2",brand:"blacksea",brandName:"Магия Чёрного моря",name:"Спрей для носа и горла",type:"Спрей для носа и горла",description:"Для промывания полости горла и носа. В комплекте дополнительная насадка для удобного применения.",price:999,image:"",category:"face",tag:"ДОПОЛНИТЕЛЬНАЯ НАСАДКА"},
