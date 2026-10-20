@@ -588,3 +588,35 @@ body.modal-open{overflow:hidden}
  .product-image-modal-hint{padding-bottom:5px}
 }
 @media(max-width:380px){.product-image-modal-bottom{align-items:flex-start;flex-direction:column}.product-image-modal-bottom .add-button{width:100%}}
+
+/* Brand-specific product image viewer palettes */
+.product-image-modal.brand-anapa{background:rgba(30,23,15,.78)}
+.product-image-modal.brand-anapa .product-image-modal-panel{background:#f5efe3;border-color:rgba(173,139,91,.38);box-shadow:0 28px 100px rgba(22,15,7,.35);border-radius:18px;overflow:hidden}
+.product-image-modal.brand-anapa .product-image-modal-visual{background:linear-gradient(145deg,#eee2ce 0%,#f7f0e4 55%,#e7d5b8 100%);padding:clamp(20px,4vw,44px)}
+.product-image-modal.brand-anapa .product-image-modal-visual img{mix-blend-mode:multiply;border-radius:8px}
+.product-image-modal.brand-anapa .product-image-modal-info{color:#3b352a}
+.product-image-modal.brand-anapa .product-image-modal-info .overline,.product-image-modal.brand-anapa .product-image-modal-type{color:#9a7749}
+.product-image-modal.brand-anapa .product-image-modal-info h2{color:#30291f}
+.product-image-modal.brand-anapa .product-image-modal-description{color:#6e6558}
+.product-image-modal.brand-anapa .product-image-modal-bottom{border-color:rgba(154,119,73,.25)}
+.product-image-modal.brand-anapa .product-image-modal-bottom>strong{color:#8c6738}
+.product-image-modal.brand-anapa .product-image-modal-bottom .add-button{background:#31554a;color:#fff;border-color:#31554a}
+.product-image-modal.brand-anapa .product-image-modal-hint{color:#f5efe3}
+.product-image-modal.brand-anapa .product-image-modal-close{background:#f5efe3;color:#4c3d2b;border-color:#cbb28e;border-radius:50%}
+.product-image-modal.brand-blacksea{background:rgba(5,19,30,.82)}
+.product-image-modal.brand-blacksea .product-image-modal-panel{background:#153344;border-color:rgba(135,184,184,.4);box-shadow:0 28px 100px rgba(0,8,18,.42);border-radius:18px;overflow:hidden}
+.product-image-modal.brand-blacksea .product-image-modal-visual{background:linear-gradient(145deg,#cbdedb 0%,#e3eeea 52%,#a9c8c8 100%);padding:clamp(20px,4vw,44px)}
+.product-image-modal.brand-blacksea .product-image-modal-visual img{mix-blend-mode:multiply;border-radius:8px}
+.product-image-modal.brand-blacksea .product-image-modal-info{color:#e8f1f0}
+.product-image-modal.brand-blacksea .product-image-modal-info .overline,.product-image-modal.brand-blacksea .product-image-modal-type{color:#9ed0ca}
+.product-image-modal.brand-blacksea .product-image-modal-info h2{color:#f0f7f5}
+.product-image-modal.brand-blacksea .product-image-modal-description{color:#c5d9dc}
+.product-image-modal.brand-blacksea .product-image-modal-bottom{border-color:rgba(158,208,202,.25)}
+.product-image-modal.brand-blacksea .product-image-modal-bottom>strong{color:#a9ded6}
+.product-image-modal.brand-blacksea .product-image-modal-bottom .add-button{background:#8fc4b7;color:#12313c;border-color:#8fc4b7}
+.product-image-modal.brand-blacksea .product-image-modal-hint{color:#d2e5e5}
+.product-image-modal.brand-blacksea .product-image-modal-close{background:#173c4c;color:#eaf4f2;border-color:#7eaaa9;border-radius:50%}
+@media(max-width:700px){
+.product-image-modal.brand-anapa .product-image-modal-panel,.product-image-modal.brand-blacksea .product-image-modal-panel{border-radius:16px}
+.product-image-modal.brand-anapa .product-image-modal-visual,.product-image-modal.brand-blacksea .product-image-modal-visual{padding:18px}
+}
