@@ -89,14 +89,14 @@ function renderAccount(){
     return;
   }
   const favoriteProducts=state.favorites.map(id=>products.find(p=>p.id===id)).filter(Boolean);
-  const sellerPanel = isStoreAdmin ? `<section class="account-panel seller-orders-panel"><div class="seller-panel-heading"><div><p class="overline">МАГАЗИН БЕРЕГ</p><h3>Заказы <span class="account-count">${sellerOrders.filter(o=>o.status==="new").length}</span></h3></div><div class="seller-order-tools"><button class="account-mode-toggle" type="button" data-refresh-orders>Обновить ↻</button><button class="add-button" type="button" data-enable-push ${pushBusy?"disabled":""}>${pushBusy?"Подключаем…":pushEnabled?"Уведомления включены":"Включить уведомления"}</button></div></div>${pushMessage?`<p class="account-message ${pushEnabled?"success":"info"}">${escapeHTML(pushMessage)}</p>`:""}${sellerOrdersLoading?`<p class="account-intro">Загружаем заказы…</p>`:sellerOrders.length?sellerOrders.map(renderSellerOrder).join(""):`<p class="account-intro">Пока нет заказов. Когда покупатель оформит заказ, он появится здесь.</p>`}</section>` : "";
+  const sellerPanel = "";
   root.innerHTML=`<div class="account-dashboard"><div class="account-welcome"><span class="account-symbol">≈</span><div><p class="overline">ВАШЕ ПРОСТРАНСТВО</p><h2>Здравствуйте<em>, ${escapeHTML(profile.display_name.trim()||authSession.user.email.split("@")[0])}.</em></h2><p>${escapeHTML(authSession.user.email)}</p></div><button class="account-logout" type="button" data-account-logout>Выйти ↗</button></div><div class="account-columns"><form id="profileForm" class="account-panel account-form"><p class="overline">ЛИЧНЫЕ ДАННЫЕ</p><h3>Ваш профиль</h3><label>Имя<input name="display_name" type="text" maxlength="80" value="${escapeHTML(profile.display_name)}" placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" maxlength="40" autocomplete="tel" value="${escapeHTML(profile.phone)}" placeholder="+7 …"></label><button class="button button-dark account-submit" type="submit" ${accountBusy?"disabled":""}>${accountBusy?"Сохраняем…":"Сохранить данные"} <span>↗</span></button>${accountMessage?'<p class="account-message '+escapeHTML(accountMessageType)+'">'+escapeHTML(accountMessage)+'</p>':""}</form><div class="account-panel favorites-panel"><p class="overline">ВАШИ НАХОДКИ</p><h3>Избранное <span class="account-count">${favoriteProducts.length}</span></h3>${favoriteProducts.length?'<div class="account-favorite-list">'+favoriteProducts.map(p=>'<div class="account-favorite"><span>'+escapeHTML(p.name)+'</span><strong>'+money(p.price)+'</strong></div>').join("")+'</div>':'<p class="account-intro">Здесь появятся средства, которые вы отметите сердечком в каталоге.</p>'}<button class="account-mode-toggle" type="button" data-go="anapa">Перейти к покупкам ↗</button></div></div>${sellerPanel}<p class="account-privacy">Избранное синхронизируется с вашим аккаунтом, когда вы вошли в систему.</p></div>`;
 }
 async function loadProfileAndFavorites(user){
   if(!supabaseClient||!user)return;
   const {data:adminRecord}=await supabaseClient.from("store_admins").select("user_id").eq("user_id",user.id).maybeSingle();
   isStoreAdmin=!!adminRecord;
-  if(isStoreAdmin)loadStoreOrders();
+  if(isStoreAdmin){window.location.replace("./manager.html");return}
   const {data:profileData,error:profileError}=await supabaseClient.from("profiles").select("display_name,phone").eq("id",user.id).maybeSingle();
   if(!profileError&&profileData)profile={display_name:profileData.display_name||user.user_metadata?.display_name||"",phone:profileData.phone||""};else if(!profileError)profile={display_name:user.user_metadata?.display_name||"",phone:""};
   const {data:favoritesData,error:favoritesError}=await supabaseClient.from("user_favorites").select("product_id").eq("user_id",user.id);
@@ -148,7 +148,7 @@ function renderSellerOrder(order){
 }
 if(supabaseClient){
   supabaseClient.auth.getSession().then(({data})=>{authSession=data.session||null;if(authSession)loadProfileAndFavorites(authSession.user);if(state.page==="account")renderAccount()});
-  supabaseClient.auth.onAuthStateChange((_event,session)=>{authSession=session||null;if(authSession){Promise.resolve().then(()=>loadProfileAndFavorites(authSession.user))}else{profile={display_name:"",phone:""};if(state.page==="account")renderAccount()}});
+  supabaseClient.auth.onAuthStateChange((_event,session)=>{authSession=session||null;if(authSession){Promise.resolve().then(()=>loadProfileAndFavorites(authSession.user))}else{profile={display_name:"",phone:""};isStoreAdmin=false;sellerOrders=[];if(state.page==="account")renderAccount()}});
 }
 
 $$("[data-category-filter]").forEach(el=>el.addEventListener("click",()=>{state.category[el.dataset.categoryFilter]=el.dataset.category;renderCatalog(el.dataset.categoryFilter)}));
