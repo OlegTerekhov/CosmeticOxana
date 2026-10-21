@@ -623,4 +623,5 @@ body.modal-open{overflow:hidden}
 
 
 /* Discreet manager access in the site footer */
+.site-footer{display:flex}
 .manager-access-link{display:block;flex-basis:100%;width:max-content;margin:4px auto 0;color:var(--muted);font-size:10px;font-weight:400;letter-spacing:.04em;opacity:.72;transition:opacity .2s,color .2s}.manager-access-link:hover{color:var(--sand);opacity:1;text-decoration:underline;text-underline-offset:4px}@media(max-width:760px){.site-footer{display:grid}.manager-access-link{grid-column:1/-1;justify-self:center;margin-top:12px;padding-bottom:2px}}
