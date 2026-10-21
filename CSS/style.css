@@ -620,3 +620,7 @@ body.modal-open{overflow:hidden}
 .product-image-modal.brand-anapa .product-image-modal-panel,.product-image-modal.brand-blacksea .product-image-modal-panel{border-radius:16px}
 .product-image-modal.brand-anapa .product-image-modal-visual,.product-image-modal.brand-blacksea .product-image-modal-visual{padding:18px}
 }
+
+
+/* Discreet manager access in the site footer */
+.manager-access-link{display:block;flex-basis:100%;width:max-content;margin:4px auto 0;color:var(--muted);font-size:10px;font-weight:400;letter-spacing:.04em;opacity:.72;transition:opacity .2s,color .2s}.manager-access-link:hover{color:var(--sand);opacity:1;text-decoration:underline;text-underline-offset:4px}@media(max-width:760px){.site-footer{display:grid}.manager-access-link{grid-column:1/-1;justify-self:center;margin-top:12px;padding-bottom:2px}}
