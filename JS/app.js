@@ -82,7 +82,31 @@ function renderCart(){const totalCount=state.cart.reduce((n,item)=>n+item.qty,0)
 function plural(n,a,b,c){const x=n%10,y=n%100;return y>=11&&y<=14?c:x===1?a:x>=2&&x<=4?b:c}
 function toast(message){const el=$("#toast");if(!el)return;el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2600)}
 function go(page){if(!["home","anapa","blacksea","cart","contacts","account"].includes(page))return;window.scrollTo(0,0);state.page=page;document.body.classList.toggle("subpage",page!=="home");$$(".screen").forEach(el=>el.classList.toggle("active",el.id===(page==="home"?"homeScreen":page)));$$(".page-section").forEach(el=>el.classList.toggle("active",el.id===page));$$("[data-go]").forEach(el=>el.classList.toggle("active",el.dataset.go===page));if(page==="cart")renderCart();if(page==="anapa"||page==="blacksea")renderCatalog(page);if(page==="account")renderAccount();history.replaceState(null,"","#"+page)}
-function openProductDescription(id){const p=products.find(item=>item.id===id);if(!p)return;const modal=$("#descriptionModal");if(!modal)return;$("#descriptionModalTitle").textContent=p.name;$("#descriptionModalType").textContent=p.type||p.brandName;$("#descriptionModalText").textContent=p.description.trim()||"Описание этого товара скоро появится.";modal.hidden=false;document.body.classList.add("modal-open");$("#descriptionModalClose").focus()}
+const brandDescriptions={
+  anapa:{
+    title:"Анапская косметика",
+    type:"ИСТОРИЯ БРЕНДА",
+    text:"«Анапская косметика» — это бренд уходовых средств, который появился в 2022 году. Его создала компания ООО «ФитСтайл Эко» (пос. Супсех, Анапский район).\n\nИдея родилась из желания использовать природные богатства черноморского побережья: в составах — экстракты водорослей, красного вина, хвойных растений, розовая глина, лизаты бактерий, молочные пептиды, сквалан, ниацинамид и другие компоненты.\n\nМиссия бренда — показать, что локальные природные ресурсы можно сочетать с современными технологиями для эффективного и бережного ухода.\n\nОсобенности\n• Локальность. Вдохновение и ключевые ингредиенты напрямую связаны с Анапой и Чёрным морем.\n• Безопасность и качество. Вся продукция прошла лабораторные исследования и получила декларации о соответствии стандарту ЕАС.\n• Этика. Бренд не тестирует продукцию на животных.\n\nКомпания ООО «ФитСтайл Эко» имеет собственное производство, где каждый этап создания продукции контролируется с особым вниманием к качеству и безопасности. В разработках используются только лучшие ингредиенты для создания эффективных и уникальных средств для ухода за кожей и волосами. Благодаря своему подходу к производству и выбору продуктов, ООО «ФитСтайл Эко» может заслуживать доверие своих клиентов и уверенность в качестве своей продукции."
+  },
+  blacksea:{
+    title:"Магия Чёрного моря",
+    type:"ИСТОРИЯ БРЕНДА",
+    text:"«Магия Чёрного моря» — это российский бренд, который делает ставку на природную морскую воду.\n\nСоздатели бренда вдохновились тем, что морская вода Чёрного моря богата полезными микроэлементами: йодом, кальцием, хлоридом натрия, бромом, серой, железом и другими. Чтобы взять эту природную «аптечку» и сделать её доступной круглый год — не обязательно ехать на море, чтобы пользоваться её свойствами.\n\nПри этом воду не просто берут из моря: её подвергают многоуровневой очистке, но так, чтобы природный минеральный состав сохранился.\n\nНатуральная морская вода для продукции бренда «Магия Чёрного моря» забирается в экологически чистом районе Чёрного моря на глубине до 10 метров в 5 километрах от берега. Единственный производитель в России с официальным государственным разрешением на забор морской воды.\n\nЭффективность использования продукции на основе натуральной морской воды Чёрного моря подтверждена научными исследованиями, проведёнными ФГБОУ ВО «Кубанский государственный медицинский университет» Минздрава РФ при поддержке Кубанского научного фонда.\n\nСовременная многоступенчатая обработка позволяет сохранить всю пользу минералов и микроэлементов, а также природные свойства воды до 36 месяцев."
+  }
+};
+function openBrandDescription(brand){
+  const info=brandDescriptions[brand];
+  const modal=$("#descriptionModal");
+  if(!info||!modal)return;
+  $("#descriptionModalTitle").textContent=info.title;
+  $("#descriptionModalType").textContent=info.type;
+  $("#descriptionModalText").textContent=info.text;
+  modal.querySelector(".description-modal-panel>.overline").textContent="О БРЕНДЕ";
+  modal.hidden=false;
+  document.body.classList.add("modal-open");
+  $("#descriptionModalClose").focus();
+}
+function openProductDescription(id){const p=products.find(item=>item.id===id);if(!p)return;const modal=$("#descriptionModal");if(!modal)return;$("#descriptionModalTitle").textContent=p.name;$("#descriptionModalType").textContent=p.type||p.brandName;$("#descriptionModalText").textContent=p.description.trim()||"Описание этого товара скоро появится.";modal.querySelector(".description-modal-panel>.overline").textContent="ОПИСАНИЕ ТОВАРА";modal.hidden=false;document.body.classList.add("modal-open");$("#descriptionModalClose").focus()}
 function closeProductDescription(){const modal=$("#descriptionModal");if(!modal||modal.hidden)return;modal.hidden=true;document.body.classList.remove("modal-open")}
 function openProductImage(id){const p=products.find(item=>item.id===id);const modal=$("#productImageModal");const enlarged=$("#productImageModalImage");if(!p||!modal||!enlarged||!p.image)return;modal.classList.toggle("brand-anapa",p.brand==="anapa");modal.classList.toggle("brand-blacksea",p.brand==="blacksea");enlarged.src=p.image;enlarged.alt=p.name+" — "+p.type;$("#productImageModalTitle").textContent=p.name;$("#productImageModalType").textContent=p.type||p.brandName;$("#productImageModalDescription").textContent=p.description.trim()||"Описание этого товара скоро появится.";$("#productImageModalBrand").textContent=p.brandName;$("#productImageModalPrice").textContent=money(p.price);$("#productImageModalAdd").dataset.add=p.id;modal.hidden=false;document.body.classList.add("modal-open");$("#productImageModalClose").focus()}
 function closeProductImage(){const modal=$("#productImageModal");if(!modal||modal.hidden)return;modal.hidden=true;$("#productImageModalImage").src="";document.body.classList.remove("modal-open")}
@@ -163,6 +187,7 @@ if(supabaseClient){
 $$("[data-category-filter]").forEach(el=>el.addEventListener("click",()=>{state.category[el.dataset.categoryFilter]=el.dataset.category;renderCatalog(el.dataset.categoryFilter)}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeProductDescription();closeProductImage()}const card=e.target.closest(".brand-card[data-go]");if(card&&(e.key==="Enter"||e.key===" ")){e.preventDefault();go(card.dataset.go)}});
 document.addEventListener("click",async e=>{
+  const brandDescription=e.target.closest("[data-brand-description]");if(brandDescription){e.preventDefault();e.stopPropagation();openBrandDescription(brandDescription.dataset.brandDescription);return}
   const passwordToggle=e.target.closest("[data-toggle-password]");if(passwordToggle){const input=$("#accountPassword");if(input){const visible=input.type==="password";input.type=visible?"text":"password";passwordToggle.setAttribute("aria-pressed",String(visible));passwordToggle.setAttribute("aria-label",visible?"Скрыть пароль":"Показать пароль");passwordToggle.title=visible?"Скрыть пароль":"Показать пароль";passwordToggle.innerHTML=visible?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';}return}
   const nav=e.target.closest("[data-go]");if(nav){e.preventDefault();go(nav.dataset.go);return}
   const mode=e.target.closest("[data-account-mode]");if(mode){accountMode=mode.dataset.accountMode;accountMessage="";renderAccount();return}
