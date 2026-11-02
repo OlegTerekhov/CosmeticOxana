@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = 'bereg-app-shell-v44';
+const CACHE_NAME = 'bereg-app-shell-v45';
 const APP_SHELL = [
   "./",
   "./index.html",
