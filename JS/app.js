@@ -149,7 +149,7 @@ async function enableSellerNotifications(){
   finally{pushBusy=false;renderAccount()}
 }
 function renderSellerOrder(order){
-  const delivery={courier:"Курьер",pickup:"Самовывоз",post:"Почта"}[order.delivery_method]||order.delivery_method;
+  const delivery={courier:"Другая курьерская служба",pickup:"Самовывоз",post:"Почта",russian_post:"Почта России",cdek:"СДЭК"}[order.delivery_method]||order.delivery_method;
   const statusLabels={new:"Новый",processing:"В обработке",shipped:"Отправлен",completed:"Завершён",cancelled:"Отменён"};
   const items=Array.isArray(order.items)?order.items.map(item=>`<div class="seller-order-item"><span>${escapeHTML(item.name)} × ${Number(item.qty)||0}</span><strong>${money(Number(item.line_total)||0)}</strong></div>`).join(""):"";
   const date=new Date(order.created_at).toLocaleString("ru-RU",{dateStyle:"medium",timeStyle:"short"});
