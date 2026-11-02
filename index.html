@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/style.css?v=20261102-favorites-cart2">
+  <link rel="stylesheet" href="CSS/style.css?v=20261102-seller-details1">
 </head>
 <body>
   <header class="topbar">
@@ -88,6 +88,18 @@
     <section class="contacts-page section-wrap page-section screen" id="contacts">
       <div class="catalog-top"><span class="overline">МЫ НА СВЯЗИ</span><span>АНАПА · РОССИЯ</span></div>
       <div class="contacts-layout"><div><p class="overline">Есть вопрос?</p><h1>Давайте<br><em>поговорим.</em></h1><p class="contacts-lead">Поможем с выбором ухода, расскажем о брендах и подскажем по заказу.</p></div><div class="contact-card"><span class="contact-symbol">≈</span><p class="overline">СВЯЗЬ С МАГАЗИНОМ</p><h3>Будем на связи</h3><p>Напишите нам по электронной почте или найдите магазин в мессенджере MAX.</p><a class="contact-link" href="mailto:Sea_cosmetics@mail.ru"><span>Электронная почта</span><strong>Sea_cosmetics@mail.ru ↗</strong></a><div class="contact-link"><span>MAX · сообщения</span><strong>8 995 321-00-17</strong></div><a class="button button-dark" href="https://max.ru/" target="_blank" rel="noopener noreferrer">Открыть MAX <span>↗</span></a><small>Телефон используется только для связи в MAX. Звонки на этот номер не предусмотрены.</small></div></div>
+      <section class="seller-requisites" aria-labelledby="sellerRequisitesTitle">
+        <p class="overline">ИНФОРМАЦИЯ О ПРОДАВЦЕ</p>
+        <h2 id="sellerRequisitesTitle">Реквизиты <em>магазина.</em></h2>
+        <div class="seller-requisites-grid">
+          <div><span>Продавец</span><strong>Индивидуальный предприниматель Терехова Оксана Ивановна</strong></div>
+          <div><span>ИНН</span><strong>246501373870</strong></div>
+          <div><span>ОГРНИП</span><strong>326237500340105</strong></div>
+          <div><span>Адрес регистрации</span><strong>323421, Краснодарский край, Анапский район, пос. Пятихатки, ул. Жемчужная, д. 26</strong></div>
+          <div><span>Телефон для связи в MAX</span><strong>+7 995 321-00-17</strong></div>
+          <div><span>Электронная почта</span><strong><a href="mailto:sea_cosmetics@mail.ru">sea_cosmetics@mail.ru</a></strong></div>
+        </div>
+      </section>
       <div class="coast-note"><span>44°53′ С. Ш. · 37°19′ В. Д.</span><span>С ЮГА РОССИИ — С ЛЮБОВЬЮ</span></div>
     </section>
   <section class="account-page section-wrap page-section screen" id="account">
@@ -112,11 +124,11 @@
       <button class="description-modal-close" type="button" data-close-checkout aria-label="Закрыть оформление">×</button>
       <p class="overline">ВАШ ЗАКАЗ · БЕРЕГ</p>
       <h2 id="checkoutTitle">Оформление <em>заказа.</em></h2>
-      <p class="checkout-lead">Оставьте контакты — продавец свяжется с вами для подтверждения деталей.</p>
+      <p class="checkout-lead">Оставьте контакты — продавец свяжется с вами для подтверждения деталей. Стоимость доставки оплачивает покупатель и согласует с продавцом перед отправкой.</p>
       <form id="checkoutForm" class="account-form checkout-form">
         <label>Ваше имя<input name="customer_name" type="text" maxlength="120" autocomplete="name" placeholder="Как к вам обращаться" required></label>
         <label>Телефон для связи<input name="customer_phone" type="tel" maxlength="40" autocomplete="tel" placeholder="+7 …" required></label>
-        <label>Способ получения<select name="delivery_method" required><option value="courier">Курьерская доставка</option><option value="post">Почта / отправка</option><option value="pickup">Самовывоз</option></select></label>
+        <label>Способ получения<select name="delivery_method" required><option value="russian_post">Почта России</option><option value="cdek">СДЭК</option><option value="courier">Другая курьерская служба</option><option value="pickup">Самовывоз</option></select></label>
         <label id="deliveryAddressField">Адрес доставки<input name="delivery_address" type="text" maxlength="500" autocomplete="street-address" placeholder="Город, улица, дом, квартира" required></label>
         <label>Комментарий к заказу<textarea name="customer_comment" rows="3" maxlength="1000" placeholder="Удобное время для связи, пожелания…"></textarea></label>
         <label class="checkout-honeypot" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
@@ -153,11 +165,11 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="JS/app.js?v=20261102-password-eye1"></script>
+  <script src="JS/app.js?v=20261102-seller-details1"></script>
   <script>
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=20261102-home-brand-images2").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
+        navigator.serviceWorker.register("./sw.js?v=20261102-seller-details1").catch(error => console.warn("БЕРЕГ: офлайн-режим недоступен", error));
       });
     }
   </script>
