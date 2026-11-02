@@ -96,7 +96,7 @@ async function loadProfileAndFavorites(user){
   if(!supabaseClient||!user)return;
   const {data:adminRecord}=await supabaseClient.from("store_admins").select("user_id").eq("user_id",user.id).maybeSingle();
   isStoreAdmin=!!adminRecord;
-  if(isStoreAdmin){window.location.replace("./manager.html");return}
+  // Не перенаправляем администратора автоматически: магазин всегда открывается с главной.
   const {data:profileData,error:profileError}=await supabaseClient.from("profiles").select("display_name,phone").eq("id",user.id).maybeSingle();
   if(!profileError&&profileData)profile={display_name:profileData.display_name||user.user_metadata?.display_name||"",phone:profileData.phone||""};else if(!profileError)profile={display_name:user.user_metadata?.display_name||"",phone:""};
   const {data:favoritesData,error:favoritesError}=await supabaseClient.from("user_favorites").select("product_id").eq("user_id",user.id);
