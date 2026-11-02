@@ -643,3 +643,9 @@ body.modal-open{overflow:hidden}
 .seller-requisites-grid strong,.seller-requisites-grid a{font-size:12px;font-weight:500;line-height:1.6;overflow-wrap:anywhere}
 .seller-requisites-grid a:hover{color:var(--sea)}
 @media(max-width:560px){.seller-requisites{padding:24px 0}.seller-requisites-grid{grid-template-columns:1fr}.seller-requisites-grid>div{padding:11px 0}}
+
+/* Brand description buttons on home cards */
+.brand-description-button{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;min-width:148px;margin-top:4px;padding:12px 15px;border:1px solid rgba(245,240,229,.7);border-radius:35px;background:rgba(15,39,36,.2);color:#f5f0e6;font:600 11px var(--sans);letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:background .2s,color .2s,border-color .2s,transform .2s}
+.brand-description-button span{font-size:16px;line-height:1}
+.brand-description-button:hover{background:#f5f0e6;color:#173a35;border-color:#f5f0e6;transform:translateY(-2px)}
+.brand-card-bottom{z-index:2}
