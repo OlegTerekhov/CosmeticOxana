@@ -1,0 +1,23 @@
+{
+  "name": "bereg-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "БЕРЕГ — мобильное приложение магазина косметики Чёрного моря",
+  "scripts": {
+    "prepare:web": "node scripts/prepare-web.mjs",
+    "android:init": "npx cap add android",
+    "android:sync": "npm run prepare:web && npx cap sync android",
+    "android:debug": "npm run android:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.1.2",
+    "@capacitor/core": "8.1.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/network": "8.0.2",
+    "@capacitor/share": "8.0.2",
+    "@capacitor/status-bar": "8.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.1.2"
+  }
+}
