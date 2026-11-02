@@ -752,18 +752,13 @@ body.modal-open{overflow:hidden}
 }
 
 
-/* Фон карточки с логотипом «Магия Чёрного моря» */
-.brand-tile .blacksea-card{
-  background:#e8f5ff;
-  outline:1px solid #c6e3f7;
-}
-.brand-tile .blacksea-card .brand-overlay{
-  background:transparent!important;
-}
+/* Тёплый песочный фон больших карточек брендов на главной */
+.brand-tile .blacksea-card,
 .brand-tile .anapa-card{
-  background:#e8f5ff;
-  outline:1px solid #c6e3f7;
+  background:#eadcc2;
+  outline:1px solid #d2bd96;
 }
+.brand-tile .blacksea-card .brand-overlay,
 .brand-tile .anapa-card .brand-overlay{
   background:transparent!important;
 }
