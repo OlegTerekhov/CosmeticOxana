@@ -750,3 +750,16 @@ body.modal-open{overflow:hidden}
   .brand-tile .brand-card{height:215px!important;min-height:215px}
   .brand-tile .brand-card h3{font-size:20px}
 }
+
+
+/* MCHM-BUTTON-PALE-BLUE: только кнопка описания Магии Чёрного моря */
+.brand-tile:has(.blacksea-card) .brand-description-button{
+  background:#e8f5ff;
+  border:1px solid #c6e3f7;
+  color:#173b56;
+}
+.brand-tile:has(.blacksea-card) .brand-description-button:hover{
+  background:#d8edfc;
+  border-color:#b4d9f2;
+  color:#12334b;
+}
