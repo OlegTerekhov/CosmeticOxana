@@ -1,11 +1,13 @@
 "use strict";
 
-const CACHE_NAME = 'bereg-app-shell-v47';
+const CACHE_NAME = 'bereg-app-shell-v48';
 const APP_SHELL = [
   "./",
   "./index.html",
   "./CSS/style.css",
   "./JS/app.js",
+  "./manager.html",
+  "./JS/manager.js",
   "./manifest.webmanifest",
   "./icon.svg"
 ];
@@ -44,7 +46,7 @@ self.addEventListener("push", event => {
     badge: "./icon.svg",
     tag: "bereg-new-order",
     renotify: true,
-    data: { url: data.url || "https://olegterekhov.github.io/CosmeticOxana/#account" }
+    data: { url: data.url || "https://bereg-anapa.shop/manager.html" }
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
@@ -53,7 +55,7 @@ self.addEventListener("notificationclick", event => {
   event.notification.close();
   const target = event.notification.data && event.notification.data.url
     ? event.notification.data.url
-    : "https://olegterekhov.github.io/CosmeticOxana/#account";
+    : "https://bereg-anapa.shop/manager.html";
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
     for (const client of windows) {
