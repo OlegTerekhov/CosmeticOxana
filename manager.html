@@ -2,44 +2,85 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f7f5f0">
+  <meta name="robots" content="noindex,nofollow">
   <title>БЕРЕГ — кабинет управляющего</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./CSS/style.css?v=20261021-manager-v2">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body.manager-page{min-height:100vh;background:#f7f5f0;color:#202b27}
-    .manager-wrap{width:min(100% - 32px,1000px);margin:44px auto 120px}
-    .manager-brand{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:44px}
-    .manager-brand a{color:inherit;text-decoration:none;font-weight:700;letter-spacing:.12em}
-    .manager-brand small{display:block;font-size:9px;letter-spacing:.18em;margin-top:5px}
-    .manager-intro{margin-bottom:28px}.manager-intro .overline{letter-spacing:.16em;font-size:11px}.manager-intro h1{font-size:clamp(32px,5vw,54px);line-height:1.08;margin:12px 0}.manager-intro h1 em{font-family:Georgia,serif;font-weight:400}
-    .manager-card{background:#fff;border:1px solid rgba(32,43,39,.09);border-radius:18px;padding:clamp(20px,4vw,34px);box-shadow:0 12px 35px rgba(32,43,39,.04);margin-bottom:18px}
-    .manager-form{display:grid;gap:16px;max-width:480px}.manager-form label{display:grid;gap:8px;font-size:13px}.manager-form input,.manager-order select{width:100%;border:1px solid #d9ded9;border-radius:10px;padding:13px 14px;font:inherit;background:#fff;color:inherit}
-    .manager-form button,.manager-action{border:0;border-radius:30px;background:#203d34;color:#fff;padding:14px 18px;font:inherit;cursor:pointer}
-    .manager-message{margin-top:14px;font-size:14px;line-height:1.5}.manager-message.error{color:#a33131}.manager-message.success{color:#246c48}
-    .manager-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.manager-toolbar h2{margin:0;font-size:24px}.manager-actions{display:flex;gap:8px;flex-wrap:wrap}.manager-actions button{border:1px solid #d9ded9;background:#fff;color:#203d34;border-radius:24px;padding:10px 14px;cursor:pointer;font:inherit}
-    .manager-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px}.manager-stat{background:#f5f6f2;border-radius:12px;padding:16px}.manager-stat span{display:block;font-size:12px;color:#67716c}.manager-stat strong{display:block;font-size:24px;margin-top:6px}
-    .manager-order{border:1px solid #e3e7e2;border-radius:14px;padding:18px;margin-top:14px}.manager-order-head,.manager-order-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}.manager-order-head strong{font-size:16px}.manager-order-head time{font-size:12px;color:#68736d}.manager-order-customer{margin:14px 0 10px;display:grid;gap:5px}.manager-order-customer a{color:#203d34}.manager-order-items{border-top:1px solid #edf0eb;border-bottom:1px solid #edf0eb;padding:10px 0;margin:10px 0}.manager-order-item{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:13px}.manager-order-total{font-size:18px;font-weight:700}.manager-order-note{font-size:13px;line-height:1.55;overflow-wrap:anywhere}.manager-order-bottom{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-top:14px}.manager-order-bottom label{display:grid;gap:6px;font-size:12px;flex:1;min-width:180px}.manager-order-bottom button{background:#203d34;color:#fff;border:0;border-radius:24px;padding:11px 16px;cursor:pointer}.manager-empty{padding:24px 0;color:#68736d;line-height:1.6}.manager-lock{font-size:42px;margin-bottom:10px}
-    @media(max-width:520px){.manager-wrap{margin-top:24px}.manager-brand{margin-bottom:30px}.manager-stats{grid-template-columns:1fr}.manager-stat{padding:12px}.manager-stat strong{font-size:21px}.manager-order{padding:14px}}
+    :root{color-scheme:light;--bg:#f7f5f0;--paper:#fff;--ink:#202b27;--muted:#69736e;--line:#e5e8e2;--sea:#203d34;--sand:#eadcc2}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Manrope,Arial,sans-serif}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}
+    .manager-wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 80px}
+    .manager-brand{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:4px 0 25px;border-bottom:1px solid var(--line)}
+    .manager-brand a{color:var(--ink);text-decoration:none;font-weight:700;letter-spacing:.18em}.manager-brand small{display:block;font-size:8px;letter-spacing:.17em;margin-top:5px;color:var(--muted)}
+    .manager-brand>span{font-size:9px;letter-spacing:.16em;color:var(--muted)}
+    .manager-intro{padding:36px 0 24px}.overline{font-size:10px;letter-spacing:.17em;color:var(--muted);text-transform:uppercase}
+    .manager-intro h1{font:500 clamp(36px,6vw,58px)/1 Georgia,serif;margin:12px 0}.manager-intro h1 em{font-weight:400;color:var(--sea)}
+    .manager-intro p:last-child{color:var(--muted);line-height:1.7}
+    .manager-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);box-shadow:0 12px 34px #202b2708;margin-bottom:18px}
+    .manager-login{max-width:520px}.manager-login h2,.manager-panel-title{font:500 30px Georgia,serif;margin:8px 0 12px}
+    .manager-form{display:grid;gap:14px}.manager-form label{display:grid;gap:7px;font-size:12px;color:var(--muted)}
+    .manager-form input,.manager-form select,.manager-form textarea,.manager-order select,.manager-search{width:100%;border:1px solid #d9ded9;border-radius:10px;padding:12px 13px;background:#fff;color:var(--ink);outline:none}
+    .manager-form input:focus,.manager-form select:focus,.manager-form textarea:focus,.manager-order select:focus,.manager-search:focus{border-color:#668579;box-shadow:0 0 0 3px #203d3410}
+    .manager-button{border:0;border-radius:28px;background:var(--sea);color:#fff;padding:13px 18px;font-weight:600}
+    .manager-button:disabled{opacity:.55;cursor:wait}.manager-button.secondary{background:#f1f2ed;color:var(--sea);border:1px solid var(--line)}
+    .manager-link{border:0;background:none;padding:8px 0;color:var(--sea);text-decoration:underline;text-underline-offset:3px;font-size:12px}
+    .manager-message{margin:12px 0 0;line-height:1.6;color:var(--muted)}.manager-message.error{color:#a33131}.manager-message.success{color:#246c48}
+    .manager-topline{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:22px}
+    .manager-topline h2{font:500 32px Georgia,serif;margin:0}.manager-top-actions,.manager-tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .manager-top-actions button,.manager-tab{border:1px solid var(--line);background:#fff;color:var(--sea);border-radius:25px;padding:10px 15px}
+    .manager-tab.active{background:var(--sea);color:#fff;border-color:var(--sea)}
+    .manager-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 22px}
+    .manager-stat{background:#f5f6f2;border-radius:13px;padding:16px}.manager-stat span{display:block;color:var(--muted);font-size:11px}.manager-stat strong{display:block;font-size:25px;margin-top:6px}
+    .manager-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0}
+    .manager-toolbar h3{font:500 24px Georgia,serif;margin:0}.manager-search{max-width:320px}
+    .manager-order,.manager-product,.manager-audit{border:1px solid var(--line);border-radius:14px;padding:17px;margin-top:12px}
+    .manager-order-head,.manager-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+    .manager-order-head strong{font-size:15px}.manager-muted{color:var(--muted);font-size:11px;line-height:1.6}
+    .manager-order-customer{display:grid;gap:4px;margin:12px 0}.manager-order-customer a{color:var(--sea)}
+    .manager-order-items{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0}
+    .manager-order-item{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:12px}
+    .manager-order-total{font-size:18px;font-weight:700}.manager-order-bottom{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .manager-order-bottom label{display:grid;gap:6px;flex:1;min-width:190px;font-size:11px;color:var(--muted)}
+    .manager-order-bottom button{border:0;border-radius:24px;background:var(--sea);color:#fff;padding:11px 16px}
+    .manager-product{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:14px;align-items:center}
+    .manager-product img{width:84px;height:96px;object-fit:contain;background:#f4f2ec;border-radius:9px}
+    .manager-product h3{font:500 19px Georgia,serif;margin:4px 0}.manager-product-actions{display:flex;gap:7px;flex-wrap:wrap}
+    .manager-product-actions button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:9px 12px;color:var(--sea);font-size:11px}
+    .manager-product-actions button.danger{color:#9b3434}
+    .manager-badge{display:inline-block;border-radius:20px;padding:5px 9px;background:#edf2ee;color:#315b47;font-size:10px}
+    .manager-badge.off{background:#f4ece7;color:#94543f}
+    .manager-editor{margin-top:20px;border:1px solid var(--line);border-radius:15px;padding:20px;background:#fcfcfa}
+    .manager-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .manager-editor-grid .wide{grid-column:1/-1}
+    .manager-editor-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    .manager-preview{width:110px;height:120px;object-fit:contain;border-radius:10px;background:#f0eee8}
+    .manager-empty{padding:24px 0;color:var(--muted);line-height:1.7}
+    .manager-audit{display:grid;gap:6px}.manager-audit strong{font-size:13px}
+    .manager-footer{padding:25px 0;color:var(--muted);font-size:10px;text-align:center}
+    [hidden]{display:none!important}
+    @media(max-width:650px){.manager-wrap{width:min(100% - 24px,1180px);margin-top:16px}.manager-brand>span{font-size:7px;text-align:right}.manager-intro{padding:26px 0 18px}.manager-stats{grid-template-columns:1fr}.manager-stat{padding:12px}.manager-stat strong{font-size:21px}.manager-product{grid-template-columns:64px minmax(0,1fr)}.manager-product img{width:64px;height:76px}.manager-product-actions{grid-column:1/-1}.manager-editor-grid{grid-template-columns:1fr}.manager-editor-grid .wide{grid-column:auto}.manager-toolbar{align-items:stretch}.manager-search{max-width:none}.manager-tabs{display:grid;grid-template-columns:repeat(3,1fr)}.manager-tab{padding:10px 5px;font-size:11px}.manager-top-actions{width:100%}.manager-top-actions button{flex:1}}
   </style>
 </head>
-<body class="manager-page">
+<body>
   <main class="manager-wrap">
     <header class="manager-brand">
       <a href="./index.html">≈ БЕРЕГ<small>КОСМЕТИКА ЧЁРНОГО МОРЯ</small></a>
-      <span class="overline">КАБИНЕТ УПРАВЛЯЮЩЕГО</span>
+      <span>ЗАКРЫТАЯ ЗОНА · УПРАВЛЕНИЕ МАГАЗИНОМ</span>
     </header>
     <section class="manager-intro">
-      <p class="overline">ЗАКАЗЫ · ДОСТАВКА · СТАТУСЫ</p>
+      <p class="overline">ЛИЧНЫЙ ДОСТУП УПРАВЛЯЮЩЕГО</p>
       <h1>Панель <em>управления.</em></h1>
-      <p>Закрытая зона магазина. Для входа управляющему нужен секретный код.</p>
+      <p>Заказы, каталог и история изменений магазина — в одном месте.</p>
     </section>
     <section id="managerRoot" aria-live="polite">
-      <div class="manager-card"><p>Проверяем подключение…</p></div>
+      <div class="manager-card"><p>Проверяем защищённое подключение…</p></div>
     </section>
+    <footer class="manager-footer">БЕРЕГ · КОСМЕТИКА ЧЁРНОГО МОРЯ</footer>
   </main>
-  <script src="./JS/manager.js?v=20261021-manager-v2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./JS/manager.js?v=20261108-manager-auth-v1"></script>
 </body>
 </html>
