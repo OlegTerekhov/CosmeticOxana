@@ -171,7 +171,7 @@
     if(event.target.closest("#logout")){await supabase.auth.signOut();user=null;orders=[];products=[];audit=[];tab="orders";message("Вы вышли из кабинета.","success");renderLogin();return}
     if(event.target.closest("#refreshAll")){try{await loadData();message("Данные обновлены.","success")}catch(e){message(e.message,"error");renderDashboard()}return}
     const tabButton=event.target.closest("[data-tab]");if(tabButton){tab=tabButton.dataset.tab;editorProduct=null;renderDashboard();return}
-    if(event.target.closest("#newProduct")){editorProduct={};renderDashboard();document.querySelector("#productForm")?.scrollIntoView({behavior:"smooth",block:"start"});return}
+    if(event.target.closest("#newProduct")){editorProduct={brand:"anapa",category:"face",is_active:true};renderDashboard();document.querySelector("#productForm")?.scrollIntoView({behavior:"smooth",block:"start"});return}
     if(event.target.closest("#cancelEditor")){editorProduct=null;renderDashboard();return}
     const edit=event.target.closest("[data-edit-product]");if(edit){editorProduct=products.find(p=>p.id===edit.dataset.editProduct)||null;renderDashboard();document.querySelector("#productForm")?.scrollIntoView({behavior:"smooth",block:"start"});return}
     const toggle=event.target.closest("[data-toggle-product]");if(toggle){const p=products.find(x=>x.id===toggle.dataset.toggleProduct);if(!p)return;const {error}=await supabase.from("store_products").update({is_active:!p.is_active,updated_at:new Date().toISOString(),updated_by:user.id}).eq("id",p.id);if(error){message("Не удалось изменить видимость товара.","error")}else message(p.is_active?"Товар скрыт из каталога.":"Товар возвращён в каталог.","success");await loadData();return}
