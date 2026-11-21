@@ -244,7 +244,7 @@ document.addEventListener("submit",async e=>{
     return;
   }
   if(e.target.id==="checkoutForm"){
-    e.preventDefault();if(!authSession||isStoreAdmin){closeCheckout();accountMode="login";accountMessage="Для оформления заказа необходимо войти в зарегистрированный аккаунт.";accountMessageType="info";go("account");renderAccount();return}if(accountBusy)return;
+    e.preventDefault();if(!authSession){closeCheckout();accountMode="login";accountMessage="Для оформления заказа необходимо войти в зарегистрированный аккаунт.";accountMessageType="info";go("account");renderAccount();return}if(isStoreAdmin){closeCheckout();toast("Оформление заказов доступно только покупателям.");return}if(accountBusy)return;
     if(!state.cart.length){closeCheckout();toast("Корзина пуста");return}
     const form=e.target;const data=new FormData(form);const deliveryMethod=String(data.get("delivery_method")||"");
     const payload={customerName:String(data.get("customer_name")||"").trim(),customerPhone:String(data.get("customer_phone")||"").trim(),deliveryMethod,deliveryAddress:String(data.get("delivery_address")||"").trim(),customerComment:String(data.get("customer_comment")||"").trim(),website:String(data.get("website")||""),items:state.cart.map(item=>({id:item.id,qty:item.qty}))};
