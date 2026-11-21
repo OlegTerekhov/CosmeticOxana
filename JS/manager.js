@@ -2,6 +2,7 @@
   "use strict";
   const SUPABASE_URL = "https://oxcjilamfwablsaxgkye.supabase.co";
   const SUPABASE_KEY = "sb_publishable_g6nbfIzkhoGpubwS0vwQEg_RW41kAsu";
+  const MANAGER_EMAIL = "sea_cosmetics@mail.ru";
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
   });
@@ -29,10 +30,10 @@
       return;
     }
     if (loginMode === "forgot") {
-      root.innerHTML = `<section class="manager-card manager-login"><p class="overline">ВОССТАНОВЛЕНИЕ ДОСТУПА</p><h2>Вернём доступ.</h2><p class="manager-muted">Укажите почту аккаунта управляющего. Мы отправим ссылку для создания нового пароля.</p><form class="manager-form" id="forgotForm"><label>Электронная почта<input name="email" type="email" autocomplete="email" required placeholder="name@example.com"></label><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Отправляем…":"Отправить ссылку"}</button></form><button class="manager-link" type="button" data-back-login>Вернуться ко входу</button><p class="manager-message ${noticeType}">${esc(notice)}</p></section>`;
+      root.innerHTML = `<section class="manager-card manager-login"><p class="overline">ВОССТАНОВЛЕНИЕ ДОСТУПА</p><h2>Вернём доступ.</h2><p class="manager-muted">Укажите почту аккаунта управляющего. Мы отправим ссылку для создания нового пароля.</p><form class="manager-form" id="forgotForm"><label>Почта управляющего<input name="email" type="email" value="${MANAGER_EMAIL}" readonly autocomplete="email"></label><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Отправляем…":"Отправить ссылку"}</button></form><button class="manager-link" type="button" data-back-login>Вернуться ко входу</button><p class="manager-message ${noticeType}">${esc(notice)}</p></section>`;
       return;
     }
-    root.innerHTML = `<section class="manager-card manager-login"><p class="overline">ЗАЩИЩЁННЫЙ ВХОД</p><h2>Здравствуйте.</h2><p class="manager-muted">Войдите по персональной почте и паролю управляющего. Регистрация управляющих через эту страницу закрыта.</p><form class="manager-form" id="loginForm"><label>Электронная почта<input name="email" type="email" autocomplete="username" required placeholder="Электронная почта Оксаны"></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required placeholder="Ваш пароль"></label><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Проверяем…":"Войти в кабинет"}</button></form><button class="manager-link" type="button" data-forgot>Забыли пароль?</button><p class="manager-message ${noticeType}" role="status">${esc(notice)}</p></section>`;
+    root.innerHTML = `<section class="manager-card manager-login"><p class="overline">ЗАЩИЩЁННЫЙ ВХОД</p><h2>Здравствуйте.</h2><p class="manager-muted">Войдите по персональной почте и паролю управляющего. Регистрация управляющих через эту страницу закрыта.</p><form class="manager-form" id="loginForm"><label>Почта управляющего<input name="email" type="email" value="${MANAGER_EMAIL}" readonly autocomplete="username"></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required placeholder="Ваш пароль"></label><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Проверяем…":"Войти в кабинет"}</button></form><button class="manager-link" type="button" data-forgot>Забыли пароль?</button><p class="manager-message ${noticeType}" role="status">${esc(notice)}</p></section>`;
   }
   function renderDashboard() {
     const fresh = orders.filter(o=>o.status==="new").length;
@@ -130,13 +131,13 @@
     if(event.target.id==="loginForm"){
       if(busy)return;busy=true;message("Проверяем доступ…");renderLogin();
       const data=new FormData(event.target);
-      const {data:result,error}=await supabase.auth.signInWithPassword({email:String(data.get("email")||"").trim(),password:String(data.get("password")||"")});
+      const {data:result,error}=await supabase.auth.signInWithPassword({email:MANAGER_EMAIL,password:String(data.get("password")||"")});
       busy=false;
       if(error){message("Не удалось войти. Проверьте почту и пароль.","error");renderLogin();return}
       await enter(result.session);return;
     }
     if(event.target.id==="forgotForm"){
-      if(busy)return;busy=true;const data=new FormData(event.target);const email=String(data.get("email")||"").trim();
+      if(busy)return;busy=true;const data=new FormData(event.target);const email=MANAGER_EMAIL;
       const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname+"?reset=1"});
       busy=false;message(error?"Не удалось отправить письмо. Проверьте адрес и настройки почты.":"Если адрес зарегистрирован, на него придёт письмо со ссылкой для смены пароля.","success");renderLogin();return;
     }
