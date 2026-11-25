@@ -42,8 +42,9 @@
     root.innerHTML = `<section class="manager-card">
       <div class="manager-topline"><div><p class="overline">УПРАВЛЕНИЕ МАГАЗИНОМ</p><h2>Здравствуйте, Оксана.</h2><p class="manager-muted">${esc(user.email)} · персональный аккаунт управляющего</p></div><div class="manager-top-actions"><button type="button" id="refreshAll">Обновить данные ↻</button><button type="button" id="logout">Выйти</button></div></div>
       <div class="manager-stats"><div class="manager-stat"><span>Новые заказы</span><strong>${fresh}</strong></div><div class="manager-stat"><span>Заказов загружено</span><strong>${orders.length}</strong></div><div class="manager-stat"><span>Активных товаров</span><strong>${active}</strong></div></div>
-      <div class="manager-tabs" role="tablist"><button class="manager-tab ${tab==="orders"?"active":""}" data-tab="orders">Заказы</button><button class="manager-tab ${tab==="products"?"active":""}" data-tab="products">Товары</button><button class="manager-tab ${tab==="activity"?"active":""}" data-tab="activity">Журнал действий</button></div>
-      <div id="managerTabContent">${tab==="orders"?renderOrders():tab==="products"?renderProducts():renderActivity()}</div>
+      <p class="manager-message ${noticeType}" role="status">${esc(notice)}</p>
+      <div class="manager-tabs" role="tablist"><button class="manager-tab ${tab==="orders"?"active":""}" data-tab="orders">Заказы</button><button class="manager-tab ${tab==="products"?"active":""}" data-tab="products">Товары</button><button class="manager-tab ${tab==="activity"?"active":""}" data-tab="activity">Журнал действий</button><button class="manager-tab ${tab==="security"?"active":""}" data-tab="security">Безопасность</button></div>
+      <div id="managerTabContent">${tab==="orders"?renderOrders():tab==="products"?renderProducts():tab==="activity"?renderActivity():renderSecurity()}</div>
       <p class="manager-muted" style="margin-top:22px">Сумма загруженных заказов без отменённых: ${money(turnover)}. Доступ защищён Supabase Auth и правами управляющего.</p>
     </section>`;
   }
@@ -83,6 +84,9 @@
       <div class="manager-editor-actions"><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Сохраняем…":"Сохранить товар"}</button><button class="manager-button secondary" type="button" id="cancelEditor">Отмена</button></div>
       <p class="manager-message" id="editorMessage"></p>
     </form></section>`;
+  }
+  function renderSecurity() {
+    return `<section class="manager-editor"><p class="overline">ЗАЩИТА АККАУНТА</p><h3 class="manager-panel-title">Изменение пароля</h3><p class="manager-muted">Задайте новый пароль для входа в кабинет управляющего. После сохранения можно продолжить работу в кабинете с текущей сессией.</p><form id="passwordForm" class="manager-form" autocomplete="off"><label>Новый пароль<input name="password" type="password" minlength="8" autocomplete="new-password" required placeholder="Не менее 8 символов"></label><label>Повторите новый пароль<input name="confirm" type="password" minlength="8" autocomplete="new-password" required placeholder="Введите пароль ещё раз"></label><div class="manager-editor-actions"><button class="manager-button" type="submit" ${busy?"disabled":""}>${busy?"Сохраняем…":"Сохранить новый пароль"}</button></div><p class="manager-muted">Пароль должен содержать не менее 8 символов. Не используйте пароль от других сервисов.</p></form></section>`;
   }
   function renderActivity() {
     if (!audit.length) return '<div class="manager-empty">Журнал пока пуст. Изменения заказов и товаров будут записываться автоматически.</div>';
@@ -147,6 +151,18 @@
       busy=true;const {error}=await supabase.auth.updateUser({password});busy=false;
       if(error){message("Не удалось обновить пароль. Запросите новую ссылку.","error");renderLogin();return}
       recoveryMode=false;history.replaceState(null,"",location.pathname);message("Пароль изменён. Теперь войдите в кабинет.","success");await supabase.auth.signOut();renderLogin();return;
+    }
+    if(event.target.id==="passwordForm"){
+      if(busy)return;
+      const data=new FormData(event.target);
+      const password=String(data.get("password")||"");
+      const confirm=String(data.get("confirm")||"");
+      if(password.length<8||password!==confirm){message("Пароли должны совпадать и содержать не менее 8 символов.","error");renderDashboard();return}
+      busy=true;message("Сохраняем новый пароль…");renderDashboard();
+      const {error}=await supabase.auth.updateUser({password});
+      busy=false;
+      if(error){message("Не удалось изменить пароль: "+error.message,"error");renderDashboard();return}
+      message("Пароль успешно изменён. Вы остались в кабинете.","success");tab="security";renderDashboard();return;
     }
     if(event.target.id==="productForm"){
       if(busy)return;busy=true;
