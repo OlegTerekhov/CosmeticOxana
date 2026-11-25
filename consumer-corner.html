@@ -4,40 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#102928">
-  <meta name="description" content="Уголок потребителя магазина БЕРЕГ. Черновая страница документа.">
+  <meta name="description" content="Электронный уголок потребителя интернет-магазина БЕРЕГ.">
   <title>Уголок потребителя — БЕРЕГ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./CSS/style.css?v=20261108-legal-pages">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./CSS/style.css?v=20261125-legal">
+  <link rel="stylesheet" href="./CSS/light-background.css?v=20261125-light-1">
   <style>
-    .legal-page{width:min(900px,calc(100% - 40px));margin:0 auto;padding:55px 0 90px;min-height:75vh}
-    .legal-back{display:inline-block;margin-bottom:35px;color:var(--sea);font-size:11px}
-    .legal-page h1{font:400 clamp(38px,6vw,64px)/1.05 var(--serif);margin:0 0 15px}
-    .legal-page .legal-intro{color:var(--muted);line-height:1.8;margin:0 0 30px}
-    .legal-draft{padding:17px 20px;border:1px solid rgba(191,167,126,.4);background:rgba(191,167,126,.07);color:var(--sand);font-size:12px;line-height:1.8;margin:0 0 35px}
-    .legal-section{padding:22px 0;border-top:1px solid var(--line)}
-    .legal-section h2{font:400 25px/1.2 var(--serif);margin:0 0 10px}
-    .legal-section p,.legal-section li{color:var(--muted);font-size:13px;line-height:1.9}
+    .legal-page{width:min(920px,calc(100% - 40px));margin:0 auto;padding:clamp(54px,8vw,100px) 0 90px;min-height:70vh}
+    .legal-back{display:inline-flex;align-items:center;gap:10px;margin-bottom:42px;color:var(--muted);font-size:11px;text-decoration:none}
+    .legal-back:hover{color:var(--sand)}
+    .legal-kicker{margin:0 0 14px;color:var(--sea);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+    .legal-page h1{margin:0 0 18px;font:400 clamp(42px,7vw,72px)/.98 var(--serif);color:var(--ink)}
+    .legal-intro{max-width:700px;margin:0 0 42px;color:var(--muted);font-size:13px;line-height:1.9}
+    .legal-content{padding:clamp(22px,4vw,42px);border:1px solid var(--line);border-radius:18px;background:var(--paper)}
+    .legal-content h2{margin:28px 0 10px;font:400 27px/1.15 var(--serif);color:var(--ink)}
+    .legal-content h2:first-child{margin-top:0}
+    .legal-content p,.legal-content li{color:var(--muted);font-size:12px;line-height:1.9}
+    .legal-content ul{padding-left:20px}
+    .legal-content a{color:var(--sea);overflow-wrap:anywhere}
+    .legal-content strong{color:var(--ink);font-weight:600}
     .legal-footer{border-top:1px solid var(--line);padding:25px 20px;text-align:center;color:var(--muted);font-size:10px}
-    .legal-footer a{color:var(--sea)}
+    .legal-footer a{color:var(--sea);text-decoration:none}
+    @media(max-width:560px){.legal-page{width:calc(100% - 28px)}.legal-content{padding:20px 17px}.legal-content h2{font-size:24px}}
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="wordmark" href="./index.html" aria-label="Берег — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА ЧЁРНОГО МОРЯ</small></span></a>
-    <a class="legal-back" href="./index.html">← Вернуться в магазин</a>
+    <a class="wordmark" href="./index.html" aria-label="БЕРЕГ — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА БЕРЕГА МОРЯ</small></span></a>
+    <div class="top-actions"><a class="account-shortcut" href="./index.html">На главную <span>↗</span></a></div>
   </header>
   <main class="legal-page">
-    <p class="overline">МАГАЗИН «БЕРЕГ»</p>
+    <a class="legal-back" href="./index.html">← Вернуться на сайт</a>
+    <p class="legal-kicker">ИНФОРМАЦИЯ ДЛЯ ПОКУПАТЕЛЕЙ</p>
     <h1>Уголок потребителя</h1>
-    <p class="legal-intro">На этой странице будет собрана обязательная информация для покупателей интернет-магазина «БЕРЕГ».</p>
-    <div class="legal-draft"><strong>Черновая версия.</strong> Эта страница подготовлена как заготовка. Документ пока не является окончательной редакцией и будет заполнен и проверен после получения необходимых сведений от продавца.</div>
-    <section class="legal-section"><h2>Сведения о продавце</h2><p><strong>Индивидуальный предприниматель Терехова Оксана Ивановна</strong><br>ИНН: 246501373870<br>ОГРНИП: 326237500340105<br>Адрес регистрации: 353421, Краснодарский край, Анапский район, пос. Пятихатки, ул. Жемчужная, д. 26<br>Электронная почта: <a href="mailto:sea_cosmetics@mail.ru">sea_cosmetics@mail.ru</a></p></section>
-    <section class="legal-section"><h2>Информация о товарах</h2><p>В каталоге представлены товары брендов «Анапская косметика» и «Магия Чёрного моря». По сведениям продавца, товары обеспечены необходимой маркировкой и реализуются с использованием системы «Честный ЗНАК». Сведения о конкретном товаре, его составе, объёме, назначении и сроке годности указываются в карточке товара и на упаковке.</p></section>
-    <section class="legal-section"><h2>Порядок покупки и оплаты</h2><p>Заказ оформляется на сайте после входа в аккаунт покупателя. Продавец подтверждает заказ и наличие товаров. Планируемые способы онлайн-оплаты: банковские карты и СБП через интернет-эквайринг Т-Банка. Приём платежей на сайте и выдача электронных чеков должны быть окончательно проверены до запуска онлайн-оплаты.</p></section>
-    <section class="legal-section"><h2>Доставка и получение</h2><p>Доступны доставка Почтой России, СДЭК и курьером по городу Анапа. Курьерская доставка по Анапе бесплатная. По территории Краснодарского края стоимость доставки оплачивает магазин; за пределами Краснодарского края — покупатель. Итоговая стоимость и срок доставки должны быть показаны покупателю до оплаты заказа. Самовывоз не предусмотрен.</p></section>
-    <section class="legal-section"><h2>Возврат и обращения</h2><p>По вопросам возврата, качества товара и оформленного заказа можно обратиться по адресу <a href="mailto:sea_cosmetics@mail.ru">sea_cosmetics@mail.ru</a>. Правила возврата будут опубликованы отдельным документом с учётом требований законодательства Российской Федерации и особенностей соответствующих категорий товаров.</p></section>
+    <p class="legal-intro">Сведения о продавце, нормативные документы и контакты контролирующих органов.</p>
+
+    <section class="legal-content">
+      <h2>Сведения о компании</h2>
+      <p><strong>ИП Терехова Оксана Ивановна</strong><br>
+      ИНН 246501373870<br>
+      ОГРНИП 3326237500340105<br>
+      353421, Краснодарский край, Анапский р-он, пос. Пятихатки, ул. Жемчужная, д.26<br>
+      тел. <a href="tel:+79953210017">+79953210017</a><br>
+      адрес точки: <a href="https://bereg-anapa.shop/#contacts" target="_blank" rel="noopener noreferrer">https://bereg-anapa.shop/#contacts</a></p>
+
+      <h2>Правила оказания услуг или продажи товаров</h2>
+      <p><a href="https://base.garant.ru/400170336" target="_blank" rel="noopener noreferrer">Открыть нормативный документ на сайте ГАРАНТ</a></p>
+
+      <h2>Санитарные правила</h2>
+      <p><a href="https://base.garant.ru/400163274/" target="_blank" rel="noopener noreferrer">Открыть санитарные правила на сайте ГАРАНТ</a></p>
+
+      <h2>Закон «О защите прав потребителей»</h2>
+      <p><a href="https://base.garant.ru/10106035/" target="_blank" rel="noopener noreferrer">Открыть закон на сайте ГАРАНТ</a></p>
+
+      <h2>Контакты контролирующих органов</h2>
+      <ul>
+        <li>Роспотребнадзор РФ — <a href="tel:88005554943">8 800 555 49 43</a>;</li>
+        <li>Федеральная налоговая служба РФ — <a href="tel:88002222222">8 800 222 22 22</a>;</li>
+        <li>Федеральная антимонопольная служба РФ — <a href="tel:84997552323">8 499 755 23 23</a>;</li>
+        <li>МВД РФ — <a href="tel:88002227447">8 800 222 74 47</a>;</li>
+        <li>Прокуратура РФ — <a href="tel:88002507978">8 800 250 79 78</a>.</li>
+      </ul>
+    </section>
   </main>
   <footer class="legal-footer">© 2026 · БЕРЕГ · <a href="./index.html">На главную</a></footer>
 </body>
