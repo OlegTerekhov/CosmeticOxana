@@ -3,163 +3,80 @@ if (!defined('ABSPATH')) { exit; }
 get_header();
 ?>
 <header class="topbar">
-    <a class="wordmark" href="#home" data-go="home" aria-label="Берег — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА БЕРЕГА МОРЯ</small></span></a>
-    <div class="top-actions">
-      <span class="top-note">С любовью с юга России</span>
-      <button class="account-shortcut" type="button" data-go="account" aria-label="Личный кабинет">Личный кабинет <span>↗</span></button>
+  <a class="wordmark" href="<?php echo esc_url(home_url('/')); ?>" aria-label="БЕРЕГ — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА БЕРЕГА МОРЯ</small></span></a>
+  <div class="top-actions">
+    <span class="top-note">С любовью с юга России</span>
+    <a class="account-shortcut" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">Личный кабинет <span>↗</span></a>
+  </div>
+</header>
+
+<main id="mainContent">
+  <section class="hero page-section active" id="home">
+    <div class="hero-photo" role="img" aria-label="Чёрное море и южное побережье"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <span class="eyebrow"><i></i> РАЗНЫЙ УХОД · ОДНО МОРЕ</span>
+      <h1>Юг, который<br><em>остаётся с тобой.</em></h1>
+      <p>Редкие моменты заботы о себе, вдохновлённые характером южного побережья. Две коллекции — одно море.</p>
+      <div class="hero-foot"><span>44°53′ с. ш.</span><span class="foot-line"></span><span>АНАПА · ЧЁРНОЕ МОРЕ</span></div>
     </div>
-  </header>
-
-  <main id="mainContent">
-    <div class="screen active" id="homeScreen">
-    <section class="hero page-section active" id="home">
-      <div class="hero-photo" role="img" aria-label="Солнечное Чёрное море и берег"></div>
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <span class="eyebrow"><i></i> РАЗНЫЙ УХОД · ОДНО МОРЕ</span>
-        <h1>Юг, который<br><em>остаётся с тобой.</em></h1>
-        <p>Редкие моменты заботы о себе, вдохновлённые характером южного побережья. Разные коллекции — разное настроение.</p>
-        <div class="hero-foot"><span>44°53′ с. ш.</span><span class="foot-line"></span><span>АНАПА · ЧЁРНОЕ МОРЕ</span></div>
-      </div>
-      <div class="hero-index"><span>01</span><span class="index-line"></span><span>02</span></div>
-    </section>
-
-
-
-    <section class="brands section-wrap" id="brands">
-      <div class="section-heading"><div><p class="overline">Выбери своё побережье</p><h2>Разный уход.<br><em>Одно море.</em></h2></div><span class="heading-aside">КОЛЛЕКЦИИ / 2026</span></div>
-      <div class="brand-grid">
-        <div class="brand-tile">
-          <article class="brand-card anapa-card" data-go="anapa" role="link" tabindex="0" aria-label="Открыть каталог Анапская косметика">
-            <img src="./images/%D0%B0%D0%BD%D0%B0%D0%BF%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BA%D0%BE%D1%81%D0%BC%D0%B5%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.png?v=20261102-anapa-logo-png" alt="Анапская косметика — фирменное изображение бренда" loading="lazy">
-            <div class="brand-overlay"></div><div class="brand-card-top"><span>01 / СОЛНЦЕ</span><span>АНАПА, РОССИЯ</span></div>
-          </article>
-          <div class="brand-card-bottom"><p>Тепло песка и сила солнца</p><h3>Анапская<br><em>косметика</em></h3><button class="brand-description-button" type="button" data-brand-description="anapa" aria-haspopup="dialog">Описание <span>↗</span></button></div>
-        </div>
-        <div class="brand-tile">
-          <article class="brand-card blacksea-card" data-go="blacksea" role="link" tabindex="0" aria-label="Открыть каталог Магия Чёрного моря">
-            <img src="./images/%D0%BC%D0%B0%D0%B3%D0%B8%D1%8F%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BC%D0%BE%D1%80%D1%8F%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.png?v=20261102-mchm-image3" alt="Магия Чёрного моря — фирменное изображение бренда" loading="lazy">
-            <div class="brand-overlay"></div><div class="brand-card-top"><span>02 / МОРЕ</span><span>ЧЁРНОМОРСКОЕ ПОБЕРЕЖЬЕ</span></div>
-          </article>
-          <div class="brand-card-bottom"><p>Глубина, свежесть, свобода</p><h3>Магия<br><em>Чёрного моря</em></h3><button class="brand-description-button" type="button" data-brand-description="blacksea" aria-haspopup="dialog">Описание <span>↗</span></button></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="intro section-wrap">
-      <div class="section-label"><span>01</span><span>НАША ИСТОРИЯ</span></div>
-      <div class="intro-copy"><p class="overline">Море ближе, чем кажется</p><h2>Почувствуй<br>свой <em>юг.</em></h2></div>
-      <p class="intro-text">Мы собираем бренды, рождённые на юге России. У каждого — свой характер, свой взгляд на уход и одна общая стихия: Чёрное море.</p>
-    </section>
-
-      </div>
-
-  <section class="catalog section-wrap page-section screen" id="anapa">
-      <div class="catalog-heading"><p class="overline">Тепло южного солнца</p><h1>Анапская <em>косметика</em></h1><p>Знакомые ритуалы ухода с характером южного побережья.</p></div>
-      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="anapa" data-category="all">Все товары</button><button class="category-filter" data-category-filter="anapa" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="anapa" data-category="body">Уход за телом</button><button class="category-filter" data-category-filter="anapa" data-category="hair">Уход за волосами</button></div><div class="filter-row"><span class="catalog-count" id="anapaCount">Коллекция бренда</span></div>
-      <div class="product-grid" id="anapaProducts"></div>
-    </section>
-
-    <section class="catalog section-wrap page-section screen" id="blacksea">
-      <div class="catalog-heading"><p class="overline">Свежесть морской глубины</p><h1>Магия <em>Чёрного моря</em></h1><p>Уход, вдохновлённый природой и свободой побережья.</p></div>
-      <div class="category-filters" role="group" aria-label="Фильтр по типу ухода"><button class="category-filter active" data-category-filter="blacksea" data-category="all">Все товары</button><button class="category-filter" data-category-filter="blacksea" data-category="face">Уход за лицом</button><button class="category-filter" data-category-filter="blacksea" data-category="body">Уход за телом</button><button class="category-filter" data-category-filter="blacksea" data-category="hair">Уход за волосами</button></div><div class="filter-row"><span class="catalog-count" id="blackseaCount">Коллекция бренда</span></div>
-      <div class="product-grid" id="blackseaProducts"></div>
-    </section>
-
-    <section class="cart-page section-wrap page-section screen" id="cart">
-      <div class="catalog-top"><span class="overline">ВАШ ВЫБОР</span><span class="cart-number" id="cartCountLabel">0 товаров</span></div>
-      <div class="cart-heading"><h1>Ваша <em>корзина.</em></h1></div>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="cart-summary" id="cartSummary"><div><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark" id="checkoutButton">Перейти к оформлению <span>↗</span></button><p>После отправки заявки продавец свяжется с вами и подтвердит заказ.</p></div>
-    </section>
-
-    <section class="contacts-page section-wrap page-section screen" id="contacts">
-      <div class="catalog-top"><span class="overline">МЫ НА СВЯЗИ</span><span>АНАПА · РОССИЯ</span></div>
-      <div class="contacts-layout"><div><p class="overline">Есть вопрос?</p><h1>Давайте<br><em>поговорим.</em></h1><p class="contacts-lead">Поможем с выбором ухода, расскажем о брендах и подскажем по заказу.</p></div><div class="contact-card"><span class="contact-symbol">≈</span><p class="overline">СВЯЗЬ С МАГАЗИНОМ</p><h3>Будем на связи</h3><p>Напишите нам по электронной почте или найдите магазин в мессенджере MAX.</p><a class="contact-link" href="mailto:Sea_cosmetics@mail.ru"><span>Электронная почта</span><strong>Sea_cosmetics@mail.ru ↗</strong></a><div class="contact-link"><span>MAX · сообщения</span><strong>8 995 321-00-17</strong></div><a class="button button-dark" href="https://max.ru/" target="_blank" rel="noopener noreferrer">Открыть MAX <span>↗</span></a><small>Телефон используется только для связи в MAX. Звонки на этот номер не предусмотрены.</small></div></div>
-      <section class="seller-requisites" aria-labelledby="sellerRequisitesTitle">
-        <p class="overline">ИНФОРМАЦИЯ О ПРОДАВЦЕ</p>
-        <h2 id="sellerRequisitesTitle">Реквизиты <em>магазина.</em></h2>
-        <div class="seller-requisites-grid">
-          <div><span>Продавец</span><strong>Индивидуальный предприниматель Терехова Оксана Ивановна</strong></div>
-          <div><span>ИНН</span><strong>246501373870</strong></div>
-          <div><span>ОГРНИП</span><strong>326237500340105</strong></div>
-          <div><span>Адрес регистрации</span><strong>353421, Краснодарский край, Анапский район, пос. Пятихатки, ул. Жемчужная, д. 26</strong></div>
-          <div><span>Телефон для связи в MAX</span><strong>+7 995 321-00-17</strong></div>
-          <div><span>Электронная почта</span><strong><a href="mailto:sea_cosmetics@mail.ru">sea_cosmetics@mail.ru</a></strong></div>
-        </div>
-      </section>
-      <div class="coast-note"><span>44°53′ С. Ш. · 37°19′ В. Д.</span><span>С ЮГА РОССИИ — С ЛЮБОВЬЮ</span></div>
-    </section>
-  <section class="account-page section-wrap page-section screen" id="account">
-    <div class="catalog-top"><span class="overline">ВАШ БЕРЕГ</span><span>ЛИЧНОЕ ПРОСТРАНСТВО</span></div>
-    <div class="account-heading"><p class="overline">Добро пожаловать</p><h1>Личный <em>кабинет.</em></h1><p>Ваши данные и любимые средства — в одном месте.</p></div>
-    <div id="accountContent" class="account-content"><div class="account-loading">Подготавливаем личный кабинет…</div></div>
   </section>
-  </main>
 
-  <footer class="site-footer">
-    <a class="footer-brand" href="#home" data-go="home">БЕРЕГ <span>≈</span></a>
-    <p>Разный уход. Одно море.</p>
-    <span>© 2026 · КОСМЕТИКА ЮГА РОССИИ</span>
-    <div class="footer-legal-links" aria-label="Информация магазина">
-      <a href="./delivery.html">Доставка и оплата</a>
-      <a href="#" aria-disabled="true" onclick="event.preventDefault()">Документы</a>
-      <a href="./consumer-corner.html">Уголок потребителя</a>
+  <section class="brands section-wrap" id="brands">
+    <div class="section-heading"><div><p class="overline">Выбери своё побережье</p><h2>Разный уход.<br><em>Одно море.</em></h2></div><span class="heading-aside">КОЛЛЕКЦИИ / 2026</span></div>
+    <div class="brand-grid">
+      <a class="brand-tile" href="<?php echo esc_url(home_url('/product-category/anapa/')); ?>">
+        <article class="brand-card anapa-card"><img src="<?php echo esc_url(home_url('/images/анапская косметика главная.png')); ?>" alt="Анапская косметика"><div class="brand-overlay"></div><div class="brand-card-top"><span>01 / СОЛНЦЕ</span><span>АНАПА, РОССИЯ</span></div></article>
+        <div class="brand-card-bottom"><p>Тепло песка и сила солнца</p><h3>Анапская<br><em>косметика</em></h3><span class="brand-description-button">Перейти в каталог ↗</span></div>
+      </a>
+      <a class="brand-tile" href="<?php echo esc_url(home_url('/product-category/black-sea/')); ?>">
+        <article class="brand-card blacksea-card"><img src="<?php echo esc_url(home_url('/images/магия черного моря главная.png')); ?>" alt="Магия Чёрного моря"><div class="brand-overlay"></div><div class="brand-card-top"><span>02 / МОРЕ</span><span>ЧЁРНОМОРСКОЕ ПОБЕРЕЖЬЕ</span></div></article>
+        <div class="brand-card-bottom"><p>Глубина, свежесть, свобода</p><h3>Магия<br><em>Чёрного моря</em></h3><span class="brand-description-button">Перейти в каталог ↗</span></div>
+      </a>
     </div>
-    <a class="manager-access-link" href="./manager.html">для управляющего</a>
-  </footer>
+  </section>
 
-  <nav class="bottom-nav" aria-label="Основная навигация">
-    <button class="nav-item active" data-go="home"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7M5.5 9v12h13V9M9.5 21v-7h5v7"/></svg></span><span>Главная</span></button>
-    <button class="nav-item" data-go="anapa"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.55 1.55m11.04 11.04 1.55 1.55M2 12h2.2m15.6 0H22M4.93 19.07l1.55-1.55M17.52 6.48l1.55-1.55"/></svg></span><span>Анапская<br>косметика</span></button>
-    <button class="nav-item" data-go="blacksea"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2M2 13c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2M2 18c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 2.4-2"/></svg></span><span>Магия Чёрного моря</span></button>
-    <button class="nav-item" data-go="cart"><span class="nav-icon cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="navCartCount">0</b></span><span>Корзина</span></button>
-    <button class="nav-item" data-go="account"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span><span>Кабинет</span></button>
-    <button class="nav-item" data-go="contacts"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span>Контакты</span></button>
-  </nav>
-  <div class="checkout-modal" id="checkoutModal" hidden>
-    <div class="checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-      <button class="description-modal-close" type="button" data-close-checkout aria-label="Закрыть оформление">×</button>
-      <p class="overline">ВАШ ЗАКАЗ · БЕРЕГ</p>
-      <h2 id="checkoutTitle">Оформление <em>заказа.</em></h2>
-      <p class="checkout-lead">Оставьте контакты — продавец свяжется с вами для подтверждения деталей. Курьер по Анапе — бесплатно. По Краснодарскому краю доставку оплачивает магазин, за пределы края — покупатель. Итоговая стоимость доставки будет указана до оплаты заказа.</p>
-      <form id="checkoutForm" class="account-form checkout-form">
-        <label>Ваше имя<input name="customer_name" type="text" maxlength="120" autocomplete="name" placeholder="Как к вам обращаться" required></label>
-        <label>Телефон для связи<input name="customer_phone" type="tel" maxlength="40" autocomplete="tel" placeholder="+7 …" required></label>
-        <label>Способ получения<select name="delivery_method" required><option value="courier">Курьер по Анапе — бесплатно</option><option value="russian_post">Почта России</option><option value="cdek">СДЭК</option></select></label>
-        <label id="deliveryAddressField">Адрес доставки<input name="delivery_address" type="text" maxlength="500" autocomplete="street-address" placeholder="Город, улица, дом, квартира" required></label>
-        <label>Комментарий к заказу<textarea name="customer_comment" rows="3" maxlength="1000" placeholder="Удобное время для связи, пожелания…"></textarea></label>
-        <label class="checkout-honeypot" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-        <p class="checkout-error" id="checkoutError" role="alert" hidden></p>
-        <button class="button button-dark account-submit" type="submit">Подтвердить заказ <span>↗</span></button>
-        <p class="checkout-consent">Нажимая кнопку, вы отправляете продавцу контактные данные и состав заказа для его обработки.</p>
-      </form>
-      <div class="checkout-success" id="checkoutSuccess" hidden></div>
+  <section class="intro section-wrap">
+    <div class="section-label"><span>01</span><span>НАША ИСТОРИЯ</span></div>
+    <div class="intro-copy"><p class="overline">Море ближе, чем кажется</p><h2>Почувствуй<br>свой <em>юг.</em></h2></div>
+    <p class="intro-text">Мы собираем бренды, рождённые на юге России. У каждого — свой характер, свой взгляд на уход и одна общая стихия: Чёрное море.</p>
+  </section>
+
+  <?php if (class_exists('WooCommerce')) : ?>
+    <section class="catalog section-wrap" id="featured-products">
+      <div class="catalog-heading"><p class="overline">Выбор магазина</p><h2>Средства для <em>твоего берега.</em></h2><p>Избранные средства двух коллекций.</p></div>
+      <?php echo do_shortcode('[products limit="8" columns="4" visibility="visible" orderby="popularity" order="DESC"]'); ?>
+      <p class="catalog-more"><a class="button button-dark" href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>">Все товары <span>↗</span></a></p>
+    </section>
+  <?php else : ?>
+    <section class="catalog section-wrap"><h2>Каталог скоро откроется</h2><p>Для работы магазина требуется активировать WooCommerce.</p></section>
+  <?php endif; ?>
+
+  <section class="contacts-page section-wrap" id="contacts">
+    <div class="catalog-top"><span class="overline">МЫ НА СВЯЗИ</span><span>АНАПА · РОССИЯ</span></div>
+    <div class="contacts-layout">
+      <div><p class="overline">Есть вопрос?</p><h2>Давайте<br><em>поговорим.</em></h2><p class="contacts-lead">Поможем с выбором ухода, расскажем о брендах и подскажем по заказу.</p></div>
+      <div class="contact-card"><span class="contact-symbol">≈</span><p class="overline">СВЯЗЬ С МАГАЗИНОМ</p><h3>Будем на связи</h3><p>Напишите нам по электронной почте или найдите магазин в мессенджере MAX.</p><a class="contact-link" href="mailto:sea_cosmetics@mail.ru"><span>Электронная почта</span><strong>sea_cosmetics@mail.ru ↗</strong></a><div class="contact-link"><span>MAX · сообщения</span><strong>8 995 321-00-17</strong></div><a class="button button-dark" href="https://max.ru/" target="_blank" rel="noopener noreferrer">Открыть MAX <span>↗</span></a></div>
     </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a class="footer-brand" href="<?php echo esc_url(home_url('/')); ?>">БЕРЕГ <span>≈</span></a>
+  <p>Разный уход. Одно море.</p>
+  <span>© <?php echo esc_html(wp_date('Y')); ?> · КОСМЕТИКА ЮГА РОССИИ</span>
+  <div class="footer-legal-links">
+    <a href="<?php echo esc_url(home_url('/delivery/')); ?>">Доставка и оплата</a>
+    <a href="<?php echo esc_url(home_url('/consumer-corner/')); ?>">Уголок потребителя</a>
+    <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Политика конфиденциальности</a>
   </div>
-  <div class="description-modal" id="descriptionModal" hidden>
-    <div class="description-modal-panel" role="dialog" aria-modal="true" aria-labelledby="descriptionModalTitle" aria-describedby="descriptionModalText">
-      <button class="description-modal-close" id="descriptionModalClose" type="button" data-description-close aria-label="Закрыть окно описания">×</button>
-      <p class="overline">ОПИСАНИЕ ТОВАРА</p>
-      <h2 id="descriptionModalTitle">Название товара</h2>
-      <p class="description-modal-type" id="descriptionModalType"></p>
-      <p class="description-modal-text" id="descriptionModalText">Описание этого товара скоро появится.</p>
-      <button class="add-button description-modal-done" type="button" data-description-close>Закрыть</button>
-    </div>
-  </div>
-  <div class="product-image-modal" id="productImageModal" hidden>
-    <button class="product-image-modal-close" id="productImageModalClose" type="button" data-image-close aria-label="Закрыть карточку товара">×</button>
-    <div class="product-image-modal-panel" role="dialog" aria-modal="true" aria-labelledby="productImageModalTitle">
-      <div class="product-image-modal-visual"><img id="productImageModalImage" alt="Увеличенное фото товара"></div>
-      <div class="product-image-modal-info">
-        <p class="overline" id="productImageModalBrand">БЕРЕГ</p>
-        <p class="product-image-modal-type" id="productImageModalType"></p>
-        <h2 id="productImageModalTitle">Название товара</h2>
-        <p class="product-image-modal-description" id="productImageModalDescription"></p>
-        <div class="product-image-modal-bottom"><strong id="productImageModalPrice"></strong><button class="add-button" id="productImageModalAdd" type="button" data-add="">В корзину&nbsp; +</button></div>
-      </div>
-    </div>
-    <p class="product-image-modal-hint">Нажмите вне карточки или Esc, чтобы закрыть</p>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <a class="manager-access-link" href="<?php echo esc_url(admin_url()); ?>">для управляющего</a>
+</footer>
+<nav class="bottom-nav" aria-label="Основная навигация">
+  <a class="nav-item active" href="<?php echo esc_url(home_url('/')); ?>"><span class="nav-icon">⌂</span><span>Главная</span></a>
+  <a class="nav-item" href="<?php echo esc_url(home_url('/product-category/anapa/')); ?>"><span class="nav-icon">☼</span><span>Анапская косметика</span></a>
+  <a class="nav-item" href="<?php echo esc_url(home_url('/product-category/black-sea/')); ?>"><span class="nav-icon">≈</span><span>Магия Чёрного моря</span></a>
+  <a class="nav-item" href="<?php echo esc_url(wc_get_cart_url()); ?>"><span class="nav-icon">♧</span><span>Корзина</span></a>
+  <a class="nav-item" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>"><span class="nav-icon">◯</span><span>Кабинет</span></a>
+</nav>
 <?php get_footer(); ?>
