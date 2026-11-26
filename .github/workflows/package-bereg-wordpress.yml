@@ -1,0 +1,36 @@
+name: Package BEREG WordPress theme
+
+on:
+  push:
+    branches:
+      - wordpress-migration
+    paths:
+      - "wordpress-theme/bereg/**"
+      - "CSS/**"
+      - "images/**"
+      - ".github/workflows/package-bereg-wordpress.yml"
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: wordpress-migration
+
+      - name: Assemble theme package
+        run: |
+          mkdir -p wordpress-theme/bereg/assets
+          cp -R CSS wordpress-theme/bereg/assets/CSS
+          cp -R images wordpress-theme/bereg/assets/images
+          cd wordpress-theme
+          zip -r ../bereg-wordpress-theme.zip bereg
+
+      - name: Upload theme ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: bereg-wordpress-theme
+          path: bereg-wordpress-theme.zip
+          if-no-files-found: error
