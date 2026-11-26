@@ -12,6 +12,19 @@ function bereg_theme_setup() {
 }
 add_action('after_setup_theme', 'bereg_theme_setup');
 
+function bereg_wc_page_url($page) {
+    if (function_exists('wc_get_page_permalink')) {
+        $url = wc_get_page_permalink($page);
+        if ($url) { return $url; }
+    }
+    return home_url('/');
+}
+
+function bereg_wc_cart_url() {
+    if (function_exists('wc_get_cart_url')) { return wc_get_cart_url(); }
+    return home_url('/');
+}
+
 function bereg_enqueue_assets() {
     $root = trailingslashit(home_url('/'));
     wp_enqueue_style('bereg-main', $root . 'CSS/style.css', array(), '20261126');
@@ -27,12 +40,7 @@ function bereg_body_classes($classes) {
 }
 add_filter('body_class', 'bereg_body_classes');
 
-function bereg_product_loop_columns() {
-    return 4;
-}
+function bereg_product_loop_columns() { return 4; }
 add_filter('loop_shop_columns', 'bereg_product_loop_columns');
-
-function bereg_products_per_page() {
-    return 16;
-}
+function bereg_products_per_page() { return 16; }
 add_filter('loop_shop_per_page', 'bereg_products_per_page', 20);
