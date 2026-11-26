@@ -44,3 +44,17 @@ function bereg_product_loop_columns() { return 4; }
 add_filter('loop_shop_columns', 'bereg_product_loop_columns');
 function bereg_products_per_page() { return 16; }
 add_filter('loop_shop_per_page', 'bereg_products_per_page', 20);
+
+function bereg_register_product_categories() {
+    if (!taxonomy_exists('product_cat')) { return; }
+    $terms = array(
+        array('name' => 'Анапская косметика', 'slug' => 'anapa'),
+        array('name' => 'Магия Чёрного моря', 'slug' => 'black-sea'),
+    );
+    foreach ($terms as $term) {
+        if (!term_exists($term['slug'], 'product_cat')) {
+            wp_insert_term($term['name'], 'product_cat', array('slug' => $term['slug']));
+        }
+    }
+}
+add_action('init', 'bereg_register_product_categories', 30);
