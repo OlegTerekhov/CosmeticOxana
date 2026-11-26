@@ -28,7 +28,7 @@ function bereg_wc_cart_url() {
 function bereg_enqueue_assets() {
     $root = trailingslashit(home_url('/'));
     wp_enqueue_style('bereg-main', get_template_directory_uri() . '/assets/CSS/style.css', array(), '20261126-main-sync');
-    wp_enqueue_style('bereg-light', get_template_directory_uri() . '/assets/CSS/light-background.css', array('bereg-main'), '20261126');
+    wp_enqueue_style('bereg-light', get_template_directory_uri() . '/assets/CSS/light-background.css', array('bereg-main'), '20261126-green2');
     wp_enqueue_style('bereg-theme', get_stylesheet_uri(), array('bereg-light'), '0.2.0');
     wp_enqueue_style('bereg-fonts', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap', array(), null);
 }
