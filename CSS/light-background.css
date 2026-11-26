@@ -1,17 +1,8 @@
-/* Светлая общая палитра магазина БЕРЕГ */
+/* Общий фон БЕРЕГ: прежний глубокий зелёный, немного светлее */
 :root{
-  color-scheme:light;
-  --bg:#f4f0e7;
-  --paper:#fffaf2;
-  --ink:#293d36;
-  --muted:#718078;
-  --line:rgba(41,61,54,.16);
-  --sea:#638f83;
-  --sea2:#315d57;
-  --sand:#a88958;
-  --nav:rgba(248,245,237,.94);
-  --card:#e9e4d8;
+  color-scheme:dark;
+  --bg:#173331;
 }
-body{background:var(--bg);color:var(--ink)}
+body{background:var(--bg)}
 .topbar{background:var(--bg)}
 .site-footer{background:var(--bg)}
