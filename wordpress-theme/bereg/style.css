@@ -28,3 +28,15 @@ Text Domain: bereg
 @media (max-width: 480px) {
   .bereg-site .catalog .products { gap: 18px 10px; }
 }
+
+/* WooCommerce uses the legacy BEREG visual system, but catalog sections must be visible in WordPress. */
+.bereg-site .catalog { display: block !important; }
+.bereg-site .woocommerce-products-header { margin-bottom: 30px; }
+.bereg-site .woocommerce ul.products { margin-top: 30px; }
+.bereg-site .woocommerce ul.products li.product .price { color: var(--ink, #173431); }
+.bereg-site .woocommerce ul.products li.product .button { margin-top: 12px; }
+.bereg-site .woocommerce .quantity input.qty { background: transparent; color: inherit; border: 1px solid var(--line); }
+.bereg-site .bereg-content-page { min-height: 65vh; }
+.bereg-site .bereg-content-page h1 { font: 400 clamp(40px,5vw,64px)/1.05 'Cormorant Garamond',serif; }
+.bereg-site .footer-legal-links { display:flex; flex-wrap:wrap; gap:14px; font-size:10px; color:var(--muted); }
+.bereg-site .manager-access-link { font-size:9px; color:var(--muted); }
