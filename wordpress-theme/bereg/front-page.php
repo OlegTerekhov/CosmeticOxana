@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) { exit; }
 get_header();
 ?>
 <header class="topbar">
-  <a class="wordmark" href="<?php echo esc_url(home_url('/')); ?>" aria-label="БЕРЕГ — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА БЕРЕГА МОРЯ</small></span></a>
+  <a class="wordmark" href="<?php echo esc_url(home_url('/')); ?>" aria-label="БЕРЕГ — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА ЧЁРНОГО МОРЯ</small></span></a>
   <div class="top-actions">
     <span class="top-note">С любовью с юга России</span>
     <a class="account-shortcut" href="<?php echo esc_url(bereg_wc_page_url('myaccount')); ?>">Личный кабинет <span>↗</span></a>
@@ -17,7 +17,7 @@ get_header();
     <div class="hero-content">
       <span class="eyebrow"><i></i> РАЗНЫЙ УХОД · ОДНО МОРЕ</span>
       <h1>Юг, который<br><em>остаётся с тобой.</em></h1>
-      <p>Редкие моменты заботы о себе, вдохновлённые характером южного побережья. Две коллекции — одно море.</p>
+      <p>Редкие моменты заботы о себе, вдохновлённые характером южного побережья. Две коллекции — два настроения Чёрного моря.</p>
       <div class="hero-foot"><span>44°53′ с. ш.</span><span class="foot-line"></span><span>АНАПА · ЧЁРНОЕ МОРЕ</span></div>
     </div>
   </section>
