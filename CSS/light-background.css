@@ -1,16 +1,16 @@
-/* Тёмно-зелёная палитра БЕРЕГА — немного светлее исходной */
+/* Светлая общая палитра магазина БЕРЕГ */
 :root{
-  color-scheme:dark;
-  --bg:#193331;
-  --paper:#21403c;
-  --ink:#e8eee4;
-  --muted:#b0c2ba;
-  --line:rgba(225,239,231,.18);
-  --sea:#9acabd;
-  --sea2:#47766d;
-  --sand:#c5ad82;
-  --nav:rgba(25,51,49,.95);
-  --card:#2a4944;
+  color-scheme:light;
+  --bg:#f4f0e7;
+  --paper:#fffaf2;
+  --ink:#293d36;
+  --muted:#718078;
+  --line:rgba(41,61,54,.16);
+  --sea:#638f83;
+  --sea2:#315d57;
+  --sand:#a88958;
+  --nav:rgba(248,245,237,.94);
+  --card:#e9e4d8;
 }
 body{background:var(--bg);color:var(--ink)}
 .topbar{background:var(--bg)}
