@@ -6,7 +6,7 @@ Description: Фирменная тема магазина БЕРЕГ на осн
 Version: 0.2.0
 Text Domain: bereg
 */
-.bereg-site { background: #f4f0e7; }
+.bereg-site { background: #173331; }
 .bereg-site a { text-decoration: none; }
 .bereg-site .brand-tile { display: block; color: inherit; }
 .bereg-site .catalog .products { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 28px 18px; margin: 32px 0; padding: 0; list-style: none; }
