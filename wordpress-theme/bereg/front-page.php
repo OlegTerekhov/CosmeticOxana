@@ -6,7 +6,7 @@ get_header();
   <a class="wordmark" href="<?php echo esc_url(home_url('/')); ?>" aria-label="БЕРЕГ — главная"><span class="mark">≈</span><span>БЕРЕГ<small>КОСМЕТИКА БЕРЕГА МОРЯ</small></span></a>
   <div class="top-actions">
     <span class="top-note">С любовью с юга России</span>
-    <a class="account-shortcut" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">Личный кабинет <span>↗</span></a>
+    <a class="account-shortcut" href="<?php echo esc_url(bereg_wc_page_url('myaccount')); ?>">Личный кабинет <span>↗</span></a>
   </div>
 </header>
 
@@ -46,7 +46,7 @@ get_header();
     <section class="catalog section-wrap" id="featured-products">
       <div class="catalog-heading"><p class="overline">Выбор магазина</p><h2>Средства для <em>твоего берега.</em></h2><p>Избранные средства двух коллекций.</p></div>
       <?php echo do_shortcode('[products limit="8" columns="4" visibility="visible" orderby="popularity" order="DESC"]'); ?>
-      <p class="catalog-more"><a class="button button-dark" href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>">Все товары <span>↗</span></a></p>
+      <p class="catalog-more"><a class="button button-dark" href="<?php echo esc_url(bereg_wc_page_url('shop')); ?>">Все товары <span>↗</span></a></p>
     </section>
   <?php else : ?>
     <section class="catalog section-wrap"><h2>Каталог скоро откроется</h2><p>Для работы магазина требуется активировать WooCommerce.</p></section>
@@ -76,7 +76,7 @@ get_header();
   <a class="nav-item active" href="<?php echo esc_url(home_url('/')); ?>"><span class="nav-icon">⌂</span><span>Главная</span></a>
   <a class="nav-item" href="<?php echo esc_url(home_url('/product-category/anapa/')); ?>"><span class="nav-icon">☼</span><span>Анапская косметика</span></a>
   <a class="nav-item" href="<?php echo esc_url(home_url('/product-category/black-sea/')); ?>"><span class="nav-icon">≈</span><span>Магия Чёрного моря</span></a>
-  <a class="nav-item" href="<?php echo esc_url(wc_get_cart_url()); ?>"><span class="nav-icon">♧</span><span>Корзина</span></a>
-  <a class="nav-item" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>"><span class="nav-icon">◯</span><span>Кабинет</span></a>
+  <a class="nav-item" href="<?php echo esc_url(bereg_wc_cart_url()); ?>"><span class="nav-icon">♧</span><span>Корзина</span></a>
+  <a class="nav-item" href="<?php echo esc_url(bereg_wc_page_url('myaccount')); ?>"><span class="nav-icon">◯</span><span>Кабинет</span></a>
 </nav>
 <?php get_footer(); ?>
