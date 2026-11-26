@@ -2,7 +2,29 @@
 Theme Name: BEREG
 Theme URI: https://bereg-anapa.shop/
 Author: BEREG
-Description: Фирменная тема магазина БЕРЕГ — перенесённая основа дизайна из GitHub.
-Version: 0.1.0
+Description: Фирменная тема магазина БЕРЕГ на основе готового дизайна проекта.
+Version: 0.2.0
 Text Domain: bereg
 */
+.bereg-site { background: #f4f0e7; }
+.bereg-site a { text-decoration: none; }
+.bereg-site .brand-tile { display: block; color: inherit; }
+.bereg-site .catalog .products { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 28px 18px; margin: 32px 0; padding: 0; list-style: none; }
+.bereg-site .catalog .products li.product { width: auto !important; float: none !important; margin: 0 !important; }
+.bereg-site .catalog .products li.product img { width: 100%; height: auto; aspect-ratio: 4/5; object-fit: contain; background: #fff; }
+.bereg-site .catalog .products li.product .woocommerce-loop-product__title { font-family: 'Cormorant Garamond',serif; font-size: 22px; line-height: 1.1; color: #173431; }
+.bereg-site .catalog .products li.product .price { color: #173431; font-weight: 700; }
+.bereg-site .catalog .products li.product .button { border-radius: 0; background: #173431; color: #fff; padding: 13px 18px; }
+.bereg-site .catalog-more { text-align: center; margin: 35px 0; }
+.bereg-site .catalog-more .button { display: inline-flex; gap: 14px; align-items: center; }
+.bereg-site .woocommerce-breadcrumb { margin: 24px auto; max-width: 1200px; color: #64736d; }
+.bereg-site .woocommerce div.product { max-width: 1200px; margin: 40px auto; }
+.bereg-site .woocommerce .quantity .qty { min-height: 42px; }
+.bereg-site .woocommerce-message, .bereg-site .woocommerce-info { border-top-color: #173431; }
+.bereg-site .bottom-nav a { color: inherit; }
+@media (max-width: 900px) {
+  .bereg-site .catalog .products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 12px; }
+}
+@media (max-width: 480px) {
+  .bereg-site .catalog .products { gap: 18px 10px; }
+}
