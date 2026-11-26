@@ -26,11 +26,11 @@ get_header();
     <div class="section-heading"><div><p class="overline">Выбери своё побережье</p><h2>Разный уход.<br><em>Одно море.</em></h2></div><span class="heading-aside">КОЛЛЕКЦИИ / 2026</span></div>
     <div class="brand-grid">
       <a class="brand-tile" href="<?php echo esc_url(home_url('/product-category/anapa/')); ?>">
-        <article class="brand-card anapa-card"><img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/анапская косметика главная.png')); ?>" alt="Анапская косметика"><div class="brand-overlay"></div><div class="brand-card-top"><span>01 / СОЛНЦЕ</span><span>АНАПА, РОССИЯ</span></div></article>
+        <article class="brand-card anapa-card"><img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/анапская косметика главная.png'); ?>" alt="Анапская косметика"><div class="brand-overlay"></div><div class="brand-card-top"><span>01 / СОЛНЦЕ</span><span>АНАПА, РОССИЯ</span></div></article>
         <div class="brand-card-bottom"><p>Тепло песка и сила солнца</p><h3>Анапская<br><em>косметика</em></h3><span class="brand-description-button">Перейти в каталог ↗</span></div>
       </a>
       <a class="brand-tile" href="<?php echo esc_url(home_url('/product-category/black-sea/')); ?>">
-        <article class="brand-card blacksea-card"><img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/магия черного моря главная.png')); ?>" alt="Магия Чёрного моря"><div class="brand-overlay"></div><div class="brand-card-top"><span>02 / МОРЕ</span><span>ЧЁРНОМОРСКОЕ ПОБЕРЕЖЬЕ</span></div></article>
+        <article class="brand-card blacksea-card"><img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/магия черного моря главная.png'); ?>" alt="Магия Чёрного моря"><div class="brand-overlay"></div><div class="brand-card-top"><span>02 / МОРЕ</span><span>ЧЁРНОМОРСКОЕ ПОБЕРЕЖЬЕ</span></div></article>
         <div class="brand-card-bottom"><p>Глубина, свежесть, свобода</p><h3>Магия<br><em>Чёрного моря</em></h3><span class="brand-description-button">Перейти в каталог ↗</span></div>
       </a>
     </div>
